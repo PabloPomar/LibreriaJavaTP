@@ -97,6 +97,6 @@ public class Libro {
 	
 	public Libro() {}
 
-	/* ESTE ES UN COMENTARIO DE TESTING */ 
+
 	
 }

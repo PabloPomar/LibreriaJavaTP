@@ -24,7 +24,7 @@ public class Autor {
 	
 	public Autor() {} 	
 	
-	/*Pablo Pömar se *******/
+
 	
 	
 }
