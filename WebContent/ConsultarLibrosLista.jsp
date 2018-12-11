@@ -44,7 +44,7 @@ ArrayList<Libro> listado = new ArrayList<Libro>();
 
 </table>
 
-<form action="ConsultarLibros.html">
+<form action="ConsultarLibros.jsp">
 	<input type="submit" class="botonGrisFinal" value="Volver" >
 </form>
 

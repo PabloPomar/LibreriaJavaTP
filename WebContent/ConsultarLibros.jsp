@@ -20,6 +20,10 @@
 </select></label>
 <label><span> </span><input type="submit" value="Ordenar" /></label>
 </form>
+<form action="PrincipalCrudLibro.jsp">
+	<label><span> </span><input type="submit" value="Volver" /></label>
+</form>
+
 </div>
 </div>
 

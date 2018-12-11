@@ -50,5 +50,14 @@ public class CtrlAMBCLibro {
 		return libros;
 	}
 	
+	public Libro getById(int id) throws Exception {
+		Libro libro = new Libro();
+		libro = dataLib.getById(id);
+		return libro;	
+		
+	}
+	
+	
+	
 	
 }

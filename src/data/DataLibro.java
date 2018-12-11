@@ -163,4 +163,48 @@ public class DataLibro {
 	}
 	
 
+	
+	
+	public Libro getById(int id) throws Exception{
+		Autor a = new Autor();
+		Libro l = new Libro();
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select * from libro l inner join autor a on l.idAutor = a.idAutor where idLibro=?");
+			stmt.setInt(1, id);
+			rs=stmt.executeQuery();
+			if(rs!=null && rs.next()){		
+				l.setIdLibro(rs.getInt("l.idLibro"));
+				l.setTitulo(rs.getString("l.titulo"));
+				l.setNroEdicion(rs.getInt("l.nroEdicion"));
+				l.setIsbn(rs.getString("l.isbn"));
+				l.setDescripcion(rs.getString("l.descripcion"));
+				l.setPrecio(rs.getFloat("l.precio"));
+				l.setEditorial(rs.getString("l.editorial"));
+				l.setGenero(rs.getString("l.genero"));
+				l.setCantidadPropia(rs.getInt("l.cantPropia"));
+				l.setCantidadConsignada(rs.getInt("l.cantConsignada"));
+				a.setIdAutor(rs.getInt("l.idAutor"));
+				a.setNombre(rs.getString("a.nombreAutor"));
+				l.setAutor(a);
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		} finally{
+			try {
+				if(rs!=null)rs.close();
+				if(stmt!=null)stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw e;
+			}
+		}
+		return l;
+}
+	
+	
+	
 }
