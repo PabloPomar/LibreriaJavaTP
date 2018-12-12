@@ -58,8 +58,11 @@ listaAutores = ctrl.getAllSortedByName();
 </div>
 </div>
 
-
-
+<div class=wrapperRight>
+<form action="PrincipalCrudLibro.jsp">
+	<input type="submit" class="botonGris" value="Volver" >
+</form>
+</div>
 
 
 

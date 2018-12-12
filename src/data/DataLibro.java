@@ -121,6 +121,7 @@ public class DataLibro {
 			}
 	}	
 	
+	/* Metodo para modificar Libros  */
 	
 	public void update(Libro l) throws Exception{
 		PreparedStatement stmt=null; 
@@ -150,6 +151,8 @@ public class DataLibro {
 		
 	}
 	
+	/* Metodos de sorting */ 
+	
 	public ArrayList<Libro> SortByTitulo(ArrayList<Libro> libros ) throws Exception {
 	
 		libros.sort((l1, l2) -> l1.getTitulo().compareTo(l2.getTitulo()));
@@ -163,7 +166,7 @@ public class DataLibro {
 	}
 	
 
-	
+	/* Obtener por id */
 	
 	public Libro getById(int id) throws Exception{
 		Autor a = new Autor();
@@ -204,6 +207,40 @@ public class DataLibro {
 		}
 		return l;
 }
+	
+	
+	/* validar que el id es valido */ 
+	
+	public String ValidarId (int id) throws Exception{
+		String validacion="invalido";
+		Statement stmt=null;
+		ResultSet rs=null;
+		stmt= FactoryConexion.getInstancia().getConn().createStatement();
+		try {
+			stmt= FactoryConexion.getInstancia().getConn().createStatement();
+			rs = stmt.executeQuery("select * from libro l  where l.idLibro=" +id);
+			if(rs.first()) {
+				validacion="valido";
+			}
+		
+		}catch (SQLException e) {
+			
+			throw e;
+		} catch (AppDataException ade){
+			throw ade;
+		}
+		
+		try {
+			if(rs!=null) rs.close();
+			if(stmt!=null) stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return validacion;		
+	}
 	
 	
 	

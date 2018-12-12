@@ -23,7 +23,9 @@
   <input type="submit" class=botonGris value="Consultar">
 </form> 
 
-
+<form action="ModificarLibro.jsp">
+  <input type="submit" class=botonGris value="Modificar">
+</form> 
 
 
 </div>

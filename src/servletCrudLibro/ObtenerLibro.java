@@ -43,15 +43,26 @@ public class ObtenerLibro extends HttpServlet {
 		PrintWriter pwriter=response.getWriter(); 
 		Libro libro= new Libro();
 		String idLibro = request.getParameter("aIdLibro");
+		String validacion;
 		int idLibroInt = Integer.parseInt(idLibro);
 		try {
 			libro = ctrl.getById(idLibroInt);
-			request.setAttribute("libro", libro);
-			/*modificar:		getServletConfig().getServletContext().getRequestDispatcher("/ConsultarLibrosLista.jsp").forward(request,response); */
-			
+			validacion= ctrl.validarId(idLibroInt);
+			if (validacion.equals("valido")) {	
+			request.setAttribute("libroVar", libro);
+			getServletConfig().getServletContext().getRequestDispatcher("/ModificarLibroFormulario.jsp").forward(request,response); 
+			}
+			else {
+				
+				pwriter.println("El id del libro no se corresponde con ningun id de la base de datos");
+				pwriter.write("<form action=\"ModificarLibro.jsp\">\r\n" + 
+						"  <input type=\"submit\" value=\"Volver\">\r\n" + 
+						"</form> ");
+				
+			}
 			
 		} catch (Exception e) {
-			pwriter.println("el autor no se a agregado");
+			pwriter.println("el id no se corresponde con ningun libro");
 			e.printStackTrace();
 		}
 		

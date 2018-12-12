@@ -23,7 +23,7 @@ ArrayList<Libro> listado = new ArrayList<Libro>();
 			for(Libro l : listado) {
 	%>
 		<tr>
-	     	<td><%=l.getCantidadConsignada() %></td>
+	     	<td><%=l.getIdLibro() %></td>
 			<td><%=l.getTitulo()%></td>
 			<td><%=l.getNroEdicion() %></td>
 			<td><%=l.getIsbn() %></td>

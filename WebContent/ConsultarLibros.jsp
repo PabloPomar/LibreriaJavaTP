@@ -27,7 +27,9 @@
 </div>
 </div>
 
-
+<form action="PrincipalCrudLibro.jsp">
+	<input type="submit" class="botonGrisFinal" value="Volver" >
+</form>
 
 
 </body>

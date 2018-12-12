@@ -57,6 +57,9 @@ public class CtrlAMBCLibro {
 		
 	}
 	
+	public String validarId(int id) throws Exception{
+		return dataLib.ValidarId(id);	
+	}
 	
 	
 	
