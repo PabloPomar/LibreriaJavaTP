@@ -2,19 +2,21 @@ package entidades;
 
 public class Proveedor {
 	
-	private int cuit;
+	private int idProveedor;
 	private String razonSocial;
 	private int telefono;
 	private String mail;
 	private String direccion;
 	
+
+	public int getIdProveedor() {
+		return idProveedor;
+	}
+	public void setIdProveedor(int idProveedor) {
+		this.idProveedor = idProveedor;
+	}
 	
-	public int getCuit() {
-		return cuit;
-	}
-	public void setCuit(int cuit) {
-		this.cuit = cuit;
-	}
+
 	public String getRazonSocial() {
 		return razonSocial;
 	}
@@ -40,15 +42,15 @@ public class Proveedor {
 		this.direccion = direccion;
 	}
 	
-	public Proveedor(int cuit, String razonSocial, int telefono, String mail, String direccion) {
+	
+	public Proveedor(int idProveedor, String razonSocial, int telefono, String mail, String direccion) {
 		super();
-		this.cuit = cuit;
+		this.idProveedor = idProveedor;
 		this.razonSocial = razonSocial;
 		this.telefono = telefono;
 		this.mail = mail;
 		this.direccion = direccion;
 	}
-	
 	public Proveedor() {}
 	
 	

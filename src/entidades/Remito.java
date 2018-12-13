@@ -3,17 +3,19 @@ import java.util.Date;
 
 public class Remito {
 	
-	private int nroRemito;
+	private int idRemito;
 	private Date fechaEmision;
 	private Proveedor proveedor;
 	private Libreria libreria;
 	
 	
-	public int getNroRemito() {
-		return nroRemito;
+
+	
+	public int getIdRemito() {
+		return idRemito;
 	}
-	public void setNroRemito(int nroRemito) {
-		this.nroRemito = nroRemito;
+	public void setIdRemito(int idRemito) {
+		this.idRemito = idRemito;
 	}
 	public Date getFechaEmision() {
 		return fechaEmision;
@@ -34,13 +36,15 @@ public class Remito {
 		this.libreria = libreria;
 	}
 	
-	public Remito(int nroRemito, Date fechaEmision, Proveedor proveedor, Libreria libreria) {
+
+	public Remito(int idRemito, Date fechaEmision, Proveedor proveedor, Libreria libreria) {
 		super();
-		this.nroRemito = nroRemito;
+		this.idRemito = idRemito;
 		this.fechaEmision = fechaEmision;
 		this.proveedor = proveedor;
 		this.libreria = libreria;
 	}
+	
 	
 	public Remito() {}
 	
