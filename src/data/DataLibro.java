@@ -206,7 +206,7 @@ public class DataLibro {
 			}
 		}
 		return l;
-}
+	}
 	
 	
 	/* validar que el id es valido */ 
