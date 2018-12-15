@@ -42,7 +42,7 @@ public class DataLinea {
 					
 					/* obtenemos los datos de la factura de compra */
 					fc.setNroFacturaCompra(rs.getInt("fc.nroFacturaCompra"));
-					fc.setFechaEmision(rs.getDate("fc.fecha_emision"));
+					fc.setFechaEmision(rs.getDate("fc.fechaEmision"));
 					
 					/* Obtenemos los datos del libro */
 					l.setIdLibro(rs.getInt("l.idLibro"));
@@ -315,6 +315,107 @@ public class DataLinea {
 	}
 	
 	
+	public  ArrayList<LineaCompra> getAllLineasCompra() throws Exception {
+		PreparedStatement stmt=null;
+		ResultSet rs=null;	
+		ArrayList<LineaCompra> lineasCompra = new ArrayList<LineaCompra>();
+
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select * from linea_compra");
+			rs= stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					
+					/* creamos las variables que vamos a necesitar */
+					
+					LineaCompra linea= new LineaCompra();
+					FacturaCompra fc = new FacturaCompra();
+					Libro l = new Libro();
+					Proveedor prove = new Proveedor();
+					Libreria libre= new Libreria();
+					Autor a = new Autor();
+					
+					/*Obtenemos los datos de la linea  */
+					linea.setIdLineaCompra(rs.getInt("idLineaCompra"));
+					linea.setCantidad(rs.getInt("cantCompra"));
+					fc.setNroFacturaCompra(rs.getInt("nroFacturaCompra"));
+					l.setIdLibro(rs.getInt("idLibro"));
+					linea.setFactura(fc);
+					linea.setLibro(l);
+					
+					
+					lineasCompra.add(linea);	
+				}	
+			}		
+		}  catch (Exception e) {
+			throw e;
+		} finally{
+			try {
+				if(rs!=null)rs.close();
+				if(stmt!=null)stmt.close();
+				FactoryConexion.getInstancia().releaseConn();
+			} catch (SQLException e) {
+				throw e;
+			}
+		}
+		return lineasCompra;
+	}
+	
+	
+	public ArrayList<LineaCompra> getLineasCompra2(Date fini, Date ffin) throws Exception{
+		PreparedStatement stmt=null;
+		ResultSet rs=null;	
+		 ArrayList<LineaCompra> lineasCompra = new ArrayList<LineaCompra>();
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select lc.idLineaCompra, lc.cantCompra,l.idLibro, l.titulo , a.nombreAutor ,  fc.nroFacturaCompra, fc.fechaEmision, p.idProveedor, p.razonSocial\r\n" + 
+					"from linea_compra lc \r\n" + 
+					"inner join factura_compra fc on lc.nroFacturaCompra = fc.nroFacturaCompra\r\n" + 
+					"inner join libro l on lc.idLibro = l.idLibro\r\n" + 
+					"inner join proveedor p on fc.idProveedor = p.idProveedor\r\n" + 
+					"inner join libreria lib on lib.cuitLibreria = fc.cuit\r\n" + 
+					"inner join autor a on l.idAutor = a.idAutor\r\n" + 
+					"where fc.fechaEmision >=? and fc.fechaEmision <=?");
+			stmt.setDate(1, fini);
+			stmt.setDate(2, ffin);
+			rs = stmt.executeQuery();
+			if (rs!=null) {
+				while (rs.next()) {
+					LineaCompra linea = new LineaCompra();
+					Libro l= new Libro();
+					Autor a = new Autor();
+					FacturaCompra fc= new FacturaCompra();
+					Proveedor p = new Proveedor();
+					linea.setIdLineaCompra(rs.getInt("lc.idLineaCompra"));
+					linea.setCantidad(rs.getInt("lc.cantCompra"));
+					l.setIdLibro(rs.getInt("l.idLibro"));
+					l.setTitulo(rs.getString("l.titulo"));
+					a.setNombre(rs.getString("a.nombreAutor"));
+					l.setAutor(a);
+					linea.setLibro(l);
+					fc.setNroFacturaCompra(rs.getInt("fc.nroFacturaCompra"));
+					fc.setFechaEmision(rs.getDate("fc.fechaEmision"));
+					p.setIdProveedor(rs.getInt("p.idProveedor"));
+					p.setRazonSocial(rs.getString("razonSocial"));
+					fc.setProveedor(p);
+					linea.setFactura(fc);
+					lineasCompra.add(linea);	
+				}	
+			}		
+		}  catch (SQLException | AppDataException e) {
+			throw e;
+		}
+		try {
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+		
+		return lineasCompra;
+		
+	}
 	
 	
 	

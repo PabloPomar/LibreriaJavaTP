@@ -2,7 +2,6 @@ package servletReportes;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,7 +11,7 @@ import controlador.*;
 import entidades.*;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 /**
  * Servlet implementation class GenerarReportes
  */
@@ -40,9 +39,9 @@ public class GenerarReportes extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		CtrlReportes ctrl = new CtrlReportes();
 		PrintWriter pwriter=response.getWriter(); 
-		Date fecha1;
-		Date fecha2;
 
 		String criteria = request.getParameter("aCriteria");
 		int criteriaInt = Integer.parseInt(criteria);
@@ -58,16 +57,36 @@ public class GenerarReportes extends HttpServlet {
 		int mes2int = Integer.parseInt(mes2);
 		String año2 = request.getParameter("aAño2");
 		int año2int = Integer.parseInt(año2);
-		 Calendar cal1 = Calendar.getInstance();
-		 cal1.clear();
-		 cal1.set(año1int, mes1int - 1, dia1int, 0, 0, 0);
-		 fecha1 = cal1.getTime(); 
-		 Calendar cal2 = Calendar.getInstance();
-		 cal2.clear();
-		 cal2.set(año2int, mes2int - 1, dia2int, 0, 0, 0);
- 		 fecha2= cal2.getTime();
-		 
+		
+
+		
+		Calendar cal1 = Calendar.getInstance();
+		cal1.clear();
+	    cal1.set(Calendar.YEAR, año1int);
+	    cal1.set(Calendar.MONTH, mes1int - 1);
+	    cal1.set(Calendar.DATE, dia1int);
+	    cal1.set(Calendar.HOUR_OF_DAY, 0);
+	    cal1.set(Calendar.MINUTE, 0);
+	    cal1.set(Calendar.SECOND, 0);
+	    cal1.set(Calendar.MILLISECOND, 0);
+		
+	    java.sql.Date fecha1 = new java.sql.Date(cal1.getTime().getTime());
+
+	    
+	    Calendar cal2 = Calendar.getInstance();
+		cal2.clear();
+	    cal1.set(Calendar.YEAR, año2int);
+	    cal1.set(Calendar.MONTH, mes2int - 1);
+	    cal1.set(Calendar.DATE, dia2int);
+	    cal1.set(Calendar.HOUR_OF_DAY, 0);
+	    cal1.set(Calendar.MINUTE, 0);
+	    cal1.set(Calendar.SECOND, 0);
+	    cal1.set(Calendar.MILLISECOND, 0);
+	    java.sql.Date fecha2 = new java.sql.Date(cal1.getTime().getTime());
+	    
 
 	}
+	
+	
 
 }

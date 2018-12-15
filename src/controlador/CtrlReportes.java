@@ -29,5 +29,15 @@ public class CtrlReportes {
 		return dataLin.getLineasVenta(fini, ffin);	
 	}
 	
+	public  ArrayList<LineaCompra> getAllLineasCompra() throws Exception {
+		return dataLin.getAllLineasCompra();
+	}
+	
+	
+	public  ArrayList<LineaCompra> getLineasCompra2(Date fini, Date ffin) throws Exception {
+		return dataLin.getLineasCompra2(fini, ffin);	
+	}
+	
+	
 
 }
