@@ -37,8 +37,8 @@ ArrayList<LineaVenta> listado = new ArrayList<LineaVenta>();
 		<td><%=lv.getFactura().getUsuario().getUsuario() %>  </td>
 		<td><%=lv.getFactura().getUsuario().getNombreYapellido() %> </td>
 		<td><%=lv.getCantidad() %> </td>  
-		<td><%=lv.getLibro().getPrecio()*1.75 %> </td>
-		<td><%=lv.getCantidad()*lv.getLibro().getPrecio()*1.75 %></td>
+		<td><%=lv.getLibro().getPrecio() %> </td>
+		<td><%=lv.getCantidad()*lv.getLibro().getPrecio() %></td>
 
 		<td><%=total %></td> 
  	</tr> 

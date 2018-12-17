@@ -14,7 +14,7 @@
 <%
 ArrayList<LineaRemito> listado = new ArrayList<LineaRemito>();
 %>
-<%float total = 0; %>
+<%double total = 0; %>
 
 <div class="wrapperCenter1">
 <h1 class=h1>Listado de lineas de consignacion</h1>
@@ -34,9 +34,9 @@ ArrayList<LineaRemito> listado = new ArrayList<LineaRemito>();
 		<td><%=lr.getLibro().getAutor().getNombre() %></td>
 		<td><%=lr.getRemito().getProveedor().getRazonSocial() %>  </td>
 		<td><%=lr.getCantidad() %> </td>  
-		<td><%=lr.getLibro().getPrecio() %> </td>
-		<td><%=lr.getCantidad()*lr.getLibro().getPrecio() %></td>
-		<% total = total + lr.getCantidad()*lr.getLibro().getPrecio(); %>
+		<td><%=lr.getLibro().getPrecio()*0.70 %> </td>
+		<td><%=lr.getCantidad()*lr.getLibro().getPrecio()*0.70 %></td>
+		<% total = total + lr.getCantidad()*lr.getLibro().getPrecio()*0.70; %>
 		<td><%=total %></td> 
  	</tr> 
  <% }%>

@@ -16,7 +16,7 @@ ArrayList<LineaCompra> listado = new ArrayList<LineaCompra>();
 
 %>
 
-<%float total = 0; %>
+<%double total = 0; %>
 <div class="wrapperCenter1">
 <h1 class=h1>Listado de lineas de compras</h1>
 </div>
@@ -34,9 +34,9 @@ ArrayList<LineaCompra> listado = new ArrayList<LineaCompra>();
 		<td><%=lc.getLibro().getAutor().getNombre() %></td>
 		<td><%=lc.getFactura().getProveedor().getRazonSocial() %>  </td>
 		<td><%=lc.getCantidad() %> </td>  
-		<td><%=lc.getLibro().getPrecio() %> </td>
-		<td><%=lc.getCantidad()*lc.getLibro().getPrecio() %></td>
-		<% total = total + lc.getCantidad()*lc.getLibro().getPrecio(); %>
+		<td><%=lc.getLibro().getPrecio()*0.70 %> </td>
+		<td><%=lc.getCantidad()*lc.getLibro().getPrecio()*0.70 %></td>
+		<% total = total + lc.getCantidad()*lc.getLibro().getPrecio()*0.70; %>
 		<td><%=total %></td> 
  	</tr> 
  <% }%>
