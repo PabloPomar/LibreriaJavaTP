@@ -38,6 +38,17 @@ public class CtrlReportes {
 		return dataLin.getLineasCompra2(fini, ffin);	
 	}
 	
+	public ArrayList<LineaCompra> SortLCByFecha(ArrayList<LineaCompra> lineas) throws Exception {	
+		return dataLin.SortLCByFecha(lineas);
+	}
+	
+	public ArrayList<LineaRemito> SortLRByFecha(ArrayList<LineaRemito> lineas) throws Exception {
+		return dataLin.SortLRByFecha(lineas);
+	}
+	
+	public ArrayList<LineaVenta> SortLVByFecha(ArrayList<LineaVenta> lineas) throws Exception {
+		return dataLin.SortLVByFecha(lineas);
+	}
 	
 
 }

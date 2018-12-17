@@ -84,6 +84,54 @@ public class GenerarReportes extends HttpServlet {
 	    cal1.set(Calendar.MILLISECOND, 0);
 	    java.sql.Date fecha2 = new java.sql.Date(cal1.getTime().getTime());
 	    
+	    switch (criteriaInt) {
+	    case 1 : 
+	    	ArrayList<LineaCompra> lineasC = new ArrayList<LineaCompra>();
+	    	try {
+				lineasC = ctrl.getLineasCompra(fecha1, fecha2);
+				ctrl.SortLCByFecha(lineasC);
+				request.setAttribute("lineasC", lineasC);
+				getServletConfig().getServletContext().getRequestDispatcher("/ListadoLC.jsp").forward(request,response);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    
+	    case 2 : 
+	    	ArrayList<LineaRemito> lineasR = new ArrayList<LineaRemito>();
+	    	
+	    	try {
+				lineasR = ctrl.getLineasRemito(fecha1, fecha2);
+				ctrl.SortLRByFecha(lineasR);
+				request.setAttribute("lineasR", lineasR);
+				getServletConfig().getServletContext().getRequestDispatcher("/ListadoLR.jsp").forward(request,response);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+	    
+	    case 3 :
+	    	ArrayList<LineaVenta> lineasV = new ArrayList<LineaVenta>();
+	    	
+	    	try {
+				lineasV = ctrl.getLineasVenta(fecha1, fecha2);
+				ctrl.SortLVByFecha(lineasV);
+				request.setAttribute("lineasV", lineasV);
+				getServletConfig().getServletContext().getRequestDispatcher("/ListadoLV.jsp").forward(request,response);
+				
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    	
+	  
+	    }
+	    
+	    
+	    
 
 	}
 	
