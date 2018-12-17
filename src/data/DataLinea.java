@@ -418,6 +418,25 @@ public class DataLinea {
 	}
 	
 	
+	/* metodos de sorting */
+	
+	public ArrayList<LineaCompra> SortLCByFecha(ArrayList<LineaCompra> lineas) throws Exception {	
+		lineas.sort((l1, l2) -> l1.getFactura().getFechaEmision().compareTo(l2.getFactura().getFechaEmision()));
+		return lineas;	
+	}
+	
+	public ArrayList<LineaRemito> SortLRByFecha(ArrayList<LineaRemito> lineas) throws Exception {
+		
+		lineas.sort((l1, l2) -> l1.getRemito().getFechaEmision().compareTo(l2.getRemito().getFechaEmision()));
+		return lineas;	
+	}
+	
+	public ArrayList<LineaVenta> SortLVByFecha(ArrayList<LineaVenta> lineas) throws Exception {
+		
+		lineas.sort((l1, l2) -> l1.getFactura().getFechaEmision().compareTo(l2.getFactura().getFechaEmision()));
+		return lineas;	
+	}
+	
 	
 
 }
