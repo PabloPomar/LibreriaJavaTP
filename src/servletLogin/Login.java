@@ -49,29 +49,27 @@ public class Login extends HttpServlet {
 		String contraseña = request.getParameter("aContraseña");
 		u.setUsuario(usuario);
 		u.setContraseña(contraseña);
+		RequestDispatcher pagina = null;
+
 		try {
 			Usuario us = ctrl.login(u);
+			
+			pagina = request.getServletContext().getRequestDispatcher("/PrincipalCrudLibro.jsp");
+
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		/* falta hacerlo bien a la respuesta*/
-		
-		/*
-		try {
-			pwriter.println("Autor Agregado");
-			pwriter.write("<form action=\"NuevoAutor.jsp\">\r\n" + 
-					"  <input type=\"submit\" value=\"Volver\">\r\n" + 
-					"</form> ");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			pwriter.println("Error en el Ingreso");
-			e.printStackTrace();
-		}*/
-		
-		RequestDispatcher pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipal");
+		/* 
+		if (us.getTipo()= usuario) {
+			pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipalUsuario");
+		} else {
+			pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipalAdmin");
+		}
+		*/
 		pagina.forward(request, response);
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

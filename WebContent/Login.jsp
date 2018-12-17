@@ -10,15 +10,17 @@
 <body>
 
 <div class="wrapperCenter1">
-
 <h1 class=h1> L O G I N </h1>
 <br>
-<form action="login" method="post">
-<label for="Usuario"><span>Usuario :<span class="required">*</span></span><input type="text" class="input-field" name="aUsuario"></label> <br>
-<label for="Contraseña"><span>Contraaseña :<span class="required">*</span></span><input type="text" class="input-field" name="aContraseña"></label> <br>
+<form action="Login" method="post">
+<label for="Usuario"><span>Usuario : <span class="required"> </span></span><input type="text" class="input-field" name="aUsuario"></label> <br>
+<label for="Contraseña"><span>Contraseña : <span class="required"> </span></span><input type="text" class="input-field" name="aContraseña"></label> <br>
 
-<input type="submit" class=botonAzul value="Ingresar" >  
+<input type="submit" class="botonAzul" value="Ingresar" >  
 </form>
+
+
+</div>
 
 </body>
 </html>
