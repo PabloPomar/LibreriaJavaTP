@@ -5,7 +5,7 @@
 <head>
 <link rel="stylesheet" href="Estilos/Estilos.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Borrado De Libro</title>
 </head>
 <body>
 <div class=wrapperCenter2>
@@ -21,9 +21,14 @@
 
 
 
+
+
 </div>
 </div>
 
+<form action="PrincipalCrudLibro.jsp">
+	<input type="submit" class="botonGrisFinal" value="Volver" >
+</form>
 
 
 

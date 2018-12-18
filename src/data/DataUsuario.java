@@ -3,7 +3,9 @@ package data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
+import entidades.Libro;
 import entidades.Usuario;
 import util.AppDataException;
 
@@ -45,6 +47,69 @@ public class DataUsuario {
 	}
 	
 	
+	public void add(Usuario u) throws Exception{
+		PreparedStatement stmt=null;
+		ResultSet keyResultSet=null;	
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement("INSERT INTO usuario (tipo, usuario, contraseña, nombreYApellido, dni, direccion, telefono, mail) VALUES ('cliente', ?, ?, ?, ?, ?, ?, ?)",PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt.setString(1, u.getUsuario());
+			stmt.setString(2, u.getContraseña());
+			stmt.setString(3, u.getNombreYapellido());
+			stmt.setInt(4, u.getDni());
+			stmt.setString(5, u.getDireccion());
+			stmt.setInt(6, u.getTelefono());
+			stmt.setString(7, u.getMail());
+			stmt.executeUpdate();
+			keyResultSet=stmt.getGeneratedKeys();
+			if(keyResultSet!=null && keyResultSet.next()){
+				u.setIdUsuario(keyResultSet.getInt(1));
+			}
+			
+		}  catch (SQLException | AppDataException e) {
+			throw e;
+		}
+		try {
+			if(keyResultSet!=null)keyResultSet.close();
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	public String ValidarUsuario (String usuario) throws Exception{
+		String validacion="valido";
+		PreparedStatement stmt=null;
+		ResultSet rs=null;
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement("select * from usuario u where u.usuario= ?");
+			stmt.setString(1, usuario);
+			rs = stmt.executeQuery();
+			if(rs.first()) {
+				validacion="invalido";
+			}
+		
+		}catch (SQLException e) {
+			
+			throw e;
+		} catch (AppDataException ade){
+			throw ade;
+		}
+		
+		try {
+			if(rs!=null) rs.close();
+			if(stmt!=null) stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return validacion;		
+	}
 	
 	
 	
