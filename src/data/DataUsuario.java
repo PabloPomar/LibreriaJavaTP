@@ -9,7 +9,7 @@ import util.AppDataException;
 
 public class DataUsuario {
 
-	public Usuario getLogedUser(Usuario usuario) {
+	public Usuario getLogedUser(Usuario usuario) throws Exception {
 		Usuario u=null;
 		PreparedStatement stmt=null;
 		ResultSet rs=null;
@@ -30,22 +30,26 @@ public class DataUsuario {
 				    u.setMail(rs.getString("mail"));
 			}
 			
-		} catch (SQLException | AppDataException e) {
+		} catch (Exception e) {
 			throw e;
-			
 		} finally{
 			try {
-				if(rs!=null) rs.close();
-				if(stmt!=null) stmt.close();
+				if(rs!=null)rs.close();
+				if(stmt!=null)stmt.close();
 				FactoryConexion.getInstancia().releaseConn();
-			} catch (final SQLException e) {
-				
-				e.printStackTrace();
+			} catch (SQLException e) {
+				throw e;
+			}
 		}
-
 		return u;
-				}
 	}
+	
+	
+	
+	
+	
+	
+	
 
 	
 }
