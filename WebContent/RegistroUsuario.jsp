@@ -128,6 +128,7 @@
 <input type="text" name="aDireccion" placeholder="Tu direccion*" required>
 <input type="text" name="aTelefono" placeholder="Tu telefono*" required>
 <input type="email" name="aEmail" placeholder="Tu email *" required>
+</fieldset>
 <fieldset>
 <legend><span class="number">2</span>Ingrese Informacion de la cuenta</legend>
 <input type="text" name="aUsuario" placeholder="Nombre de usuario *" required>

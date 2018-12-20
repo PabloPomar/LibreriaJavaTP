@@ -19,7 +19,10 @@ public class DataLibreria {
 			if(rs!=null) {
 				while(rs.next()) {
 					Libreria l = new Libreria();
-					l.setCuit(rs.getInt("l.cuitLibreria"));
+					int cuit;
+					cuit = rs.getInt("l.cuitLibreria");
+					l.setCuit(cuit);
+					
 					l.setRazonSocial(rs.getString("l.razon_social"));
 					l.setTelefonoLibreria(rs.getInt("l.telefono"));
 					l.setMailLibreria(rs.getString("l.mail"));
@@ -55,10 +58,10 @@ public class DataLibreria {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select * from libreria where cuitLibreria = ?");
+					"select * from libreria l where cuitLibreria = ? ");
 			stmt.setInt(1, cuit);
 			rs=stmt.executeQuery();
-			if(rs!=null && rs.next()){		
+			if(rs!=null && rs.next()){
 				l.setCuit(rs.getInt("l.cuitLibreria"));
 				l.setRazonSocial(rs.getString("l.razon_social"));
 				l.setTelefonoLibreria(rs.getInt("l.telefono"));

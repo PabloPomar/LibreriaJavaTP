@@ -24,7 +24,7 @@ librerias = (ArrayList<Libreria>)request.getAttribute("libreriasLista");
 <div class="form-style-2">
 <div class="form-style-2-heading">Ingrese parametros de la factura</div>
 
-	<form action="ModificarLibro" method="post">
+	<form action="FacturaGenerador" method="post">
 
 	<label for="Titulo"><span>Nro Factura:<span class="required">*</span></span><input type="text" class="input-field" name="aNroFactura"  required ></label> <br>
 	
@@ -72,7 +72,7 @@ librerias = (ArrayList<Libreria>)request.getAttribute("libreriasLista");
 
 	<h2> Proveedor</h2>
 
-	<label for="Proveedor"><span>Proveedor</span><select name="aProveedor" class="select-field">
+	<label for="Proveedor"><span>Proveedor</span><select name="aProveedorId" class="select-field">
 	<% for (Proveedor p : proveedores) { %>
 	
 	<option   value= <%=p.getIdProveedor()%>> <%=p.getRazonSocial() %> </option>
@@ -82,7 +82,7 @@ librerias = (ArrayList<Libreria>)request.getAttribute("libreriasLista");
 		
 	<h2> Libreria</h2>
 	
-	<label for="Libreria"><span>Libreria</span><select name="aLibreria" class="select-field">
+	<label for="Libreria"><span>Libreria</span><select name="aLibreriaCuit" class="select-field">
 	<% for (Libreria l : librerias) { %>
 	
 	<option   value= <%=l.getCuit()%>> <%=l.getRazonSocial() %> </option>
@@ -93,7 +93,15 @@ librerias = (ArrayList<Libreria>)request.getAttribute("libreriasLista");
 		<label><span> </span><input type="submit" value="Generar" /></label>
 	
 </form>
+
+
 </div> </div>
+
+
+<form action="FacturasPrePagina.jsp">
+	<input type="submit" class="botonGrisFinal" value="Volver" >
+</form>
+
 
 
 </body>

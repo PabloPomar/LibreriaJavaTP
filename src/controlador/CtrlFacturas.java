@@ -8,21 +8,25 @@ public class CtrlFacturas {
 	 
 	private DataProveedor dataProv;
 	private DataLibreria dataLibre;
+	private DataFacturaCompra dataFacCom;
 	
 	public CtrlFacturas() {
 		dataProv = new DataProveedor();
 		dataLibre = new DataLibreria();
+		dataFacCom = new DataFacturaCompra();
 	}
 	
+	/* metodos de proveedor */
 	
 	public ArrayList<Proveedor> getAllProveedor()throws Exception{
 		return dataProv.getAll();
 	}
 	
-	
 	public Proveedor getProveedorById(int id) throws Exception {
 		return dataProv.getById(id);	
 	}
+	
+	/* metodos de libreria */
 	
 	public ArrayList<Libreria> getAllLibreria()throws Exception{
 		return dataLibre.getAll();
@@ -36,6 +40,13 @@ public class CtrlFacturas {
 		dataProv.SortByRazonSocial(proveedores);
 		return proveedores;
 	}
+	
+	/* metodos de factura de compra */
+	
+	public void add(FacturaCompra fc) throws Exception{
+		dataFacCom.add(fc);	
+	}
+	
 	
 	
 }
