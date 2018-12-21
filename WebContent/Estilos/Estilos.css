@@ -144,6 +144,18 @@ font-variant: small-caps;
 text-transform: none;
 }
 
+h2 {
+font-family: Impact, Charcoal, sans-serif;
+font-size: 24px;
+letter-spacing: 3.6px;
+word-spacing: 1.8px;
+color: #494949;
+font-weight: normal;
+text-decoration: none;
+font-style: normal;
+font-variant: small-caps;
+text-transform: none;
+}
 
 	
 	

@@ -9,11 +9,15 @@ public class CtrlFacturas {
 	private DataProveedor dataProv;
 	private DataLibreria dataLibre;
 	private DataFacturaCompra dataFacCom;
+	private DataLibro dataLib ;
+	private DataLinea dataLin;
 	
 	public CtrlFacturas() {
 		dataProv = new DataProveedor();
 		dataLibre = new DataLibreria();
 		dataFacCom = new DataFacturaCompra();
+		dataLib = new DataLibro();
+		dataLin = new DataLinea();
 	}
 	
 	/* metodos de proveedor */
@@ -48,5 +52,26 @@ public class CtrlFacturas {
 	}
 	
 	
+	/* Metodo de obtencion de libros */
+	
+	public ArrayList<Libro> getAll()throws Exception{
+		return dataLib.getAll();
+	}
+	
+	public void updateCantPropia(Libro l, int cantidad) throws Exception{ 
+		dataLib.updateCantPropia(l, cantidad);
+		
+	}
+	
+	
+	/* Metodo de agregado de linea */
+	
+		
+	public void addLC(LineaCompra lc) throws Exception{ 
+		dataLin.addLC(lc);
+	}
+	
 	
 }
+
+

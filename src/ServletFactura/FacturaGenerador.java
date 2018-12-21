@@ -44,6 +44,8 @@ public class FacturaGenerador extends HttpServlet {
 		CtrlFacturas ctrl= new CtrlFacturas();
 		Proveedor prove = new Proveedor();
 		Libreria libre = new Libreria();
+		ArrayList<Libro> libros = new ArrayList<Libro>();
+		
 		
 		int nroFactura = Integer.parseInt(request.getParameter("aNroFactura"));	
 		int cantItems = Integer.parseInt(request.getParameter("aCantItems")) ;
@@ -77,6 +79,8 @@ public class FacturaGenerador extends HttpServlet {
 	    try {
 			prove = ctrl.getProveedorById(idProveedor);
 			libre = ctrl.getLibreriaByCuit(LibreriaCuit);
+			libros= ctrl.getAll();
+			request.setAttribute("librosInfo", libros);
 			request.setAttribute("proveedorInfo", prove);
 			request.setAttribute("libreriaInfo", libre);
 			request.setAttribute("fechaInfo", fecha);
