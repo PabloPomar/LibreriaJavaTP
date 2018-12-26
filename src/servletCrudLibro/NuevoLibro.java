@@ -3,6 +3,8 @@ package servletCrudLibro;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -81,9 +83,16 @@ public class NuevoLibro extends HttpServlet {
 		try {
 			ctrl.add(libro);
 			pwriter.println("Libro Agregado");
+			request.setAttribute("nuevoLibro", libro);
+			ServletContext context= getServletContext();
+			RequestDispatcher rd= context.getRequestDispatcher("/EnviarMail");
+			rd.forward(request, response);
+			
+			
+			/*
 			pwriter.write("<form action=\"NuevoLibro.jsp\">\r\n" + 
 					"  <input type=\"submit\" value=\"Volver\">\r\n" + 
-					"</form> ");	
+					"</form> "); */	
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			pwriter.println("el libro no se a agregado");
