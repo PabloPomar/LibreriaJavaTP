@@ -21,6 +21,7 @@
   padding: 10px;
   border: 2px solid #c6e6f0;
   background-color: #f4f4f4;
+  height: 300px;
  
 }
 
