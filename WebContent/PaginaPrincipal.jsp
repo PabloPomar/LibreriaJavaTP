@@ -193,7 +193,7 @@ input[type=text], select {
      <h4> Descripcion: ${libro0.getDescripcion()}     </h4>
      <h3 class=h3> PRECIO: $ ${libro0.getPrecio()}     </h3>
     <form action="">   
-   	 <input type="hidden"  name=aIdLibro0 value= ${libro0.getIdLibro()}   >
+   	 <input type="hidden"  name=aIdLibro value= ${libro0.getIdLibro()}   >
      <input type="submit" class=botonRojo2 value="Ver Mas">
    </form>
  </div> 
@@ -208,7 +208,7 @@ input[type=text], select {
    <h4> Descripcion: ${libro1.getDescripcion()}     </h4>
    <h3 class=h3> PRECIO: $ ${libro1.getPrecio()}     </h3>
    <form action="">   
-   	 <input type="hidden"  name=aIdLibro1 value= ${libro1.getIdLibro()}   >
+   	 <input type="hidden"  name=aIdLibro value= ${libro1.getIdLibro()}   >
      <input type="submit" class=botonRojo2 value="Ver Mas">
    </form>
   </div> 
@@ -232,7 +232,7 @@ input[type=text], select {
  <h4> Descripcion: ${libro2.getDescripcion()}     </h4>
  <h3 class=h3> PRECIO: $ ${libro2.getPrecio()}     </h3>
   <form action="">   
-   	 <input type="hidden"  name=aIdLibro2 value= ${libro2.getIdLibro()}   >
+   	 <input type="hidden"  name=aIdLibro value= ${libro2.getIdLibro()}   >
      <input type="submit" class=botonRojo2 value="Ver Mas">
    </form>
  
