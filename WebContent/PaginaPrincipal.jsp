@@ -65,6 +65,21 @@ font-variant: small-caps;
 text-transform: none;
 }
 
+h3 {
+font-family: Impact, Charcoal, sans-serif;
+font-size: 18px;
+letter-spacing: 3.6px;
+word-spacing: 1.8px;
+color: #494949;
+font-weight: normal;
+text-decoration: none;
+font-style: normal;
+font-variant: small-caps;
+text-transform: none;
+}
+
+
+
 
 input[type=text], select {
   width: 100%;
@@ -129,8 +144,8 @@ input[type=text], select {
 
 
   <form action=""> 
-	  <input type="text" name="aUsuario" placeholder="Usuario">
-	  <input type="text" name="aContraseña" placeholder="Contraseña">
+	  <input type="text" name="aUsuario" placeholder="Usuario"  required>
+	  <input type="text" name="aContraseña" placeholder="Contraseña" required>
 	  <input type="submit" class=botonRojo2 value="Log in">
   </form>
   <p> ¿Aun no tienes usuario? <a href="RegistroUsuario.jsp">Registrate</a> </p>
@@ -172,14 +187,30 @@ input[type=text], select {
  <img src="<c:url value='/imagenes/libro.jpg'/>"/>
  </div> 
  <div class="column75" > 
-   <p> ACA VAN LOS DETALLES DEL LIBRO </p>
+          <!--  ACA VAN LOS DETALLES DEL LIBRO --> 
+    <h2 class=h2> TITULO: ${libro0.getTitulo()} </h2>
+     <h3 class=h3> GENERO:        ${libro0.getGenero()}  AUTOR:       ${libro0.getAutor().getNombre()}   </h3>
+     <h4> Descripcion: ${libro0.getDescripcion()}     </h4>
+     <h3 class=h3> PRECIO: $ ${libro0.getPrecio()}     </h3>
+    <form action="">   
+   	 <input type="hidden"  name=aIdLibro0 value= ${libro0.getIdLibro()}   >
+     <input type="submit" class=botonRojo2 value="Ver Mas">
+   </form>
  </div> 
 </div>
 
 
 <div class="row"> 
  <div class="column75" >
-  <p> ACA VAN LOS DETALLES DEL LIBRO </p>
+  <!--  ACA VAN LOS DETALLES DEL LIBRO --> 
+   <h2 class=h2> TITULO: ${libro1.getTitulo()} </h2>
+   <h3 class=h3> GENERO:         ${libro1.getGenero()}  AUTOR:           ${libro1.getAutor().getNombre()}   </h3>
+   <h4> Descripcion: ${libro1.getDescripcion()}     </h4>
+   <h3 class=h3> PRECIO: $ ${libro1.getPrecio()}     </h3>
+   <form action="">   
+   	 <input type="hidden"  name=aIdLibro1 value= ${libro1.getIdLibro()}   >
+     <input type="submit" class=botonRojo2 value="Ver Mas">
+   </form>
   </div> 
  <div class="column25" > 
   <p> ACA VA UNA IMAGEN </p>
@@ -195,7 +226,17 @@ input[type=text], select {
  <img src="<c:url value='/imagenes/libro.jpg'/>"/>
  </div> 
  <div class="column75" > 
- <p> ACA VAN LOS DETALLES DEL LIBRO </p>
+ 	<!--  ACA VAN LOS DETALLES DEL LIBRO --> 
+ <h2 class=h2> TITULO: ${libro2.getTitulo()} </h2>
+ <h3 class=h3> GENERO:         ${libro2.getGenero()}  AUTOR:         ${libro2.getAutor().getNombre()}     </h3>
+ <h4> Descripcion: ${libro2.getDescripcion()}     </h4>
+ <h3 class=h3> PRECIO: $ ${libro2.getPrecio()}     </h3>
+  <form action="">   
+   	 <input type="hidden"  name=aIdLibro2 value= ${libro2.getIdLibro()}   >
+     <input type="submit" class=botonRojo2 value="Ver Mas">
+   </form>
+ 
+ 
  </div> 
 </div>
 
