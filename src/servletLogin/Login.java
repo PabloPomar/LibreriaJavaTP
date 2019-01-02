@@ -56,7 +56,7 @@ public class Login extends HttpServlet {
 			Usuario us = ctrl.login(u);
 			
 			switch (us.getTipo()) {
-				case "usuario": pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipal.jsp");
+				case "usuario": pagina = request.getServletContext().getRequestDispatcher("/PaginaPrincipal");
 							break;
 				case "administrador": pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipalAdmin.jsp");
 				break;
