@@ -44,30 +44,30 @@ public class Login extends HttpServlet {
 		try {
 		CtrlAMBCUsuario ctrl = new CtrlAMBCUsuario();
 		Usuario u = new Usuario();
-		PrintWriter pwriter=response.getWriter();
-		String usuario = request.getParameter("aUsuario");
-		String contraseña = request.getParameter("aContraseña");
+		PrintWriter pwriter=response.getWriter();	/**/
+		String usuario = request.getParameter("aUsuario");	/**/
+		String contraseña = request.getParameter("aContraseña");	/**/
 		u.setUsuario(usuario);
 		u.setContraseña(contraseña);
-		RequestDispatcher pagina = null;
+		RequestDispatcher pagina = null;	/**/
 
 		try {
+			
 			Usuario us = ctrl.login(u);
 			
-			pagina = request.getServletContext().getRequestDispatcher("/PrincipalCrudLibro.jsp");
-
+			switch (us.getTipo()) {
+				case "usuario": pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipal.jsp");
+							break;
+				case "administrador": pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipalAdmin.jsp");
+				break;
+				default: request.getServletContext().getRequestDispatcher("/Login.jsp");
+			}
+		 
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		
-		/* 
-		if (us.getTipo()= usuario) {
-			pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipalUsuario");
-		} else {
-			pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipalAdmin");
-		}
-		*/
 		pagina.forward(request, response);
 		
 		} catch (Exception e) {

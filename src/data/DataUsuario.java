@@ -34,7 +34,7 @@ public class DataUsuario {
 			
 		} catch (Exception e) {
 			throw e;
-		} finally{
+		} finally {
 			try {
 				if(rs!=null)rs.close();
 				if(stmt!=null)stmt.close();
