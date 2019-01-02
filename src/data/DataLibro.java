@@ -1,5 +1,7 @@
 package data;
 import java.util.ArrayList;
+import java.util.Arrays;
+
 import entidades.*;
 import util.AppDataException;
 import java.sql.*;
@@ -154,14 +156,17 @@ public class DataLibro {
 	/* Metodos de sorting */ 
 	
 	public ArrayList<Libro> SortByTitulo(ArrayList<Libro> libros ) throws Exception {
-	
-		libros.sort((l1, l2) -> l1.getTitulo().compareTo(l2.getTitulo()));
+		libros.sort((l1, l2) -> l1.getTitulo().compareToIgnoreCase(l2.getTitulo()));	
 		return libros;	
 	}
 	
+
+	
+	
+	
 	public ArrayList<Libro> SortByNombreAutor(ArrayList<Libro> libros ) throws Exception {
 		
-		libros.sort((l1, l2) -> l1.getAutor().getNombre().compareTo(l2.getAutor().getNombre()));
+		libros.sort((l1, l2) -> l1.getAutor().getNombre().compareToIgnoreCase(l2.getAutor().getNombre()));
 		return libros;	
 	}
 	
@@ -259,6 +264,61 @@ public class DataLibro {
 			e.printStackTrace();
 			}
 		
+	}
+	
+	
+	/* Get all para realizar consultas  */
+	
+	
+	public ArrayList<Libro> getByTitulo( String titulo ) throws Exception {		
+		PreparedStatement stmt=null; 
+		ResultSet rs=null;	
+		ArrayList<Libro> libros = new ArrayList<Libro>();	
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
+					"select * from libro l inner join autor a on l.idAutor = a.idAutor where l.titulo like ? ");
+			stmt.setString(1, "%" + titulo + "%");
+			rs=stmt.executeQuery();
+			if(rs!=null) {
+				while(rs.next()) {
+					Libro l = new Libro();
+					Autor a = new Autor();
+					
+					l.setIdLibro(rs.getInt("l.idLibro"));
+					l.setTitulo(rs.getString("l.titulo"));
+					l.setNroEdicion(rs.getInt("l.nroEdicion"));
+					l.setIsbn(rs.getString("l.isbn"));
+					l.setDescripcion(rs.getString("l.descripcion"));
+					l.setPrecio(rs.getFloat("l.precio"));
+					l.setEditorial(rs.getString("l.editorial"));
+					l.setGenero(rs.getString("l.genero"));
+					l.setCantidadPropia(rs.getInt("l.cantPropia"));
+					l.setCantidadConsignada(rs.getInt("l.cantConsignada"));
+					a.setIdAutor(rs.getInt("l.idAutor"));
+					a.setNombre(rs.getString("a.nombreAutor"));
+					l.setAutor(a);
+					libros.add(l);		
+				}	
+			}
+		
+		}catch (SQLException e) {
+			
+			throw e;
+		} catch (AppDataException ade){
+			throw ade;
+		}
+		
+		try {
+			if(rs!=null) rs.close();
+			if(stmt!=null) stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return libros;
+	
 	}
 	
 	

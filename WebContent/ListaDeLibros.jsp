@@ -1,5 +1,5 @@
- <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -98,11 +98,11 @@ input[type=text], select {
 
 
 
+<title>Listado de Libros</title>
 
-<title>Libreria Autores</title>
+
 </head>
 <body>
-
 
 <div class="wrapperCenter2"> 
 
@@ -148,7 +148,7 @@ input[type=text], select {
     <!-- Aca va el Loggin -->
 
 
-  <form action="Login", method="post"> 
+  <form action=""> 
 	  <input type="text" name="aUsuario" placeholder="Usuario"  required>
 	  <input type="text" name="aContraseña" placeholder="Contraseña" required>
 	  <input type="submit" class=botonRojo2 value="Log in">
@@ -187,64 +187,27 @@ input[type=text], select {
 
 </div>
 
-<div class="row"> 
- <div class="column25" > 
- <p> ACA VA UNA IMAGEN </p>
- <img src="<c:url value='/imagenes/libro.jpg'/>"/>
- </div> 
- <div class="column75" > 
-          <!--  ACA VAN LOS DETALLES DEL LIBRO --> 
-    <h2 class=h2> TITULO: ${libro0.getTitulo()} </h2>
-     <h3 class=h3> GENERO:        ${libro0.getGenero()}  AUTOR:       ${libro0.getAutor().getNombre()}   </h3>
-     <h4> Descripcion: ${libro0.getDescripcion()}     </h4>
-     <h3 class=h3> PRECIO: $ ${libro0.getPrecio()}     </h3>
-    <form action="">   
-   	 <input type="hidden"  name=aIdLibro value= ${libro0.getIdLibro()}   >
-     <input type="submit" class=botonRojo2 value="Ver Mas">
-   </form>
- </div> 
-</div>
+
+<c:forEach items="${listaLibros}" var="libro">
+<div class="wrapper3">
+<form action="">
+<input type="hidden" name="aIdLibro" value= ${libro.getIdLibro()} >
+  <h2 class=h2>  TITULO: ${libro.getTitulo()} Genero:  ${libro.getGenero()} Autor: ${libro.getAutor().getNombre()}  </h2>
+   <input type="submit" class=botonRojo2 value="Ver Mas">
 
 
-<div class="row"> 
- <div class="column75" >
-  <!--  ACA VAN LOS DETALLES DEL LIBRO --> 
-   <h2 class=h2> TITULO: ${libro1.getTitulo()} </h2>
-   <h3 class=h3> GENERO:         ${libro1.getGenero()}  AUTOR:           ${libro1.getAutor().getNombre()}   </h3>
-   <h4> Descripcion: ${libro1.getDescripcion()}     </h4>
-   <h3 class=h3> PRECIO: $ ${libro1.getPrecio()}     </h3>
-   <form action="">   
-   	 <input type="hidden"  name=aIdLibro value= ${libro1.getIdLibro()}   >
-     <input type="submit" class=botonRojo2 value="Ver Mas">
-   </form>
-  </div> 
- <div class="column25" > 
-  <p> ACA VA UNA IMAGEN </p>
-  <img src="<c:url value='/imagenes/libro.jpg'/>"/>
-  </div> 
-</div>
+</form>
+</div>    
+</c:forEach>
 
 
 
-<div class="row"> 
- <div class="column25" > 
- <p> ACA VA UNA IMAGEN </p>
- <img src="<c:url value='/imagenes/libro.jpg'/>"/>
- </div> 
- <div class="column75" > 
- 	<!--  ACA VAN LOS DETALLES DEL LIBRO --> 
- <h2 class=h2> TITULO: ${libro2.getTitulo()} </h2>
- <h3 class=h3> GENERO:         ${libro2.getGenero()}  AUTOR:         ${libro2.getAutor().getNombre()}     </h3>
- <h4> Descripcion: ${libro2.getDescripcion()}     </h4>
- <h3 class=h3> PRECIO: $ ${libro2.getPrecio()}     </h3>
-  <form action="">   
-   	 <input type="hidden"  name=aIdLibro value= ${libro2.getIdLibro()}   >
-     <input type="submit" class=botonRojo2 value="Ver Mas">
-   </form>
- 
- 
- </div> 
-</div>
+
+
+
+
+
+
 
 
 
