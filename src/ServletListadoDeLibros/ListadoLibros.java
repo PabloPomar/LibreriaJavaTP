@@ -1,4 +1,4 @@
-package servletCrudLibro;
+package ServletListadoDeLibros;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controlador.CtrlAMBCLibro;
+import controlador.CtrlListadoLibros;
 import entidades.Libro;
 
 /**
- * Servlet implementation class ConsultarLibro
+ * Servlet implementation class ListadoLibros
  */
-@WebServlet("/ConsultarLibro")
-public class ConsultarLibro extends HttpServlet {
+@WebServlet("/ListadoLibros")
+public class ListadoLibros extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ConsultarLibro() {
+    public ListadoLibros() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,29 +40,24 @@ public class ConsultarLibro extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CtrlAMBCLibro ctrl = new CtrlAMBCLibro();
+		CtrlListadoLibros ctrl = new CtrlListadoLibros();	
 		ArrayList<Libro> libros = new ArrayList<Libro>();
 		PrintWriter pwriter=response.getWriter(); 
-		String valor=request.getParameter("aValor");
-		int valorInt = Integer.parseInt(valor);
+		String titulo = request.getParameter("aTitulo");
 		try {
-			libros= ctrl.getAll();
-			System.out.println(valor);
-			
-			if (valorInt==2) {
-				ctrl.sortByTitulo(libros);	
-			} else if (valorInt==3) {
-				ctrl.sortByNombreAutor(libros);
-			}
-			
-			request.setAttribute("lista", libros);
-			getServletConfig().getServletContext().getRequestDispatcher("/ConsultarLibrosLista.jsp").forward(request,response);
+			libros = ctrl.getByTitulo(titulo);
+			libros = ctrl.sortByTitulo(libros);		
+			request.setAttribute( "listaLibros", libros);
+			request.getRequestDispatcher("/ListaDeLibros.jsp").forward(request, response);
 			
 			
 		} catch (Exception e) {
-			pwriter.println("La consulta no ah sido posible");
+			// TODO Auto-generated catch block
+			pwriter.println("Los libros no se han buscado");
 			e.printStackTrace();
 		}
+		
+		
 		
 		
 		
