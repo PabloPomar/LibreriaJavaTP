@@ -7,6 +7,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
 <style>
+
+.label {
+  color: black;
+  padding: 8px;
+  font-family: Trebuchet MS;
+  font-size:17px;
+  font-weight:bold;
+}
+
+
 input[type=text], select {
   width: 35%;
   padding: 12px 20px;
@@ -16,6 +26,9 @@ input[type=text], select {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+
+
 
 </style>
 
@@ -30,8 +43,8 @@ input[type=text], select {
 <h1 class=h1> L O G I N </h1>
 <br>
 <form action="Login" method="post">
-<label for="Usuario"><span>Usuario : <span class="required"> </span></span><input type="text" class="input-field" name="aUsuario"></label> <br>
-<label for="Contraseña"><span>Contraseña : <span class="required"> </span></span><input type="text" class="input-field" name="aContraseña"></label> <br>
+<label for="Usuario"><span class="label">Usuario : <span class="required"> </span></span><input type="text" class="input-field" name="aUsuario"></label> <br>
+<label for="Contraseña"><span class="label">Contraseña : <span class="required"> </span></span><input type="text" class="input-field" name="aContraseña"></label> <br>
 
 <input type="submit" class="botonAzul" value="Ingresar" >  
 </form>
