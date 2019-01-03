@@ -48,7 +48,7 @@ input[type=text], select {
 
 <input type="submit" class="botonAzul" value="Ingresar" >  
 </form>
-
+ <p> ¿Aun no tienes usuario? <a href="RegistroUsuario.jsp">Registrate</a> </p>
 
 </div>
 
