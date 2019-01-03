@@ -5,6 +5,23 @@
 <head>
 <link rel="stylesheet"  href="Estilos/Estilos.css">
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<style>
+input[type=text], select {
+  width: 35%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+</style>
+
+
+
+
 <title>Login</title>
 </head>
 <body>

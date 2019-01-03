@@ -17,7 +17,7 @@ public class DataUsuario {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idUsuario, tipo, nombreYApellido, dni, direccion, telefono, mail from Usuario where usuario= ? and contraseña= ?");
+					"select idUsuario, tipo, usuario, contraseña, nombreYApellido, dni, direccion, telefono, mail from Usuario where usuario= ? and contraseña= ?");
 			stmt.setString(1, usuario.getUsuario());
 			stmt.setString(2, usuario.getContraseña());
 			rs=stmt.executeQuery();
@@ -25,6 +25,8 @@ public class DataUsuario {
 				    u=new Usuario();
 				    u.setIdUsuario(rs.getInt("idUsuario"));
 				    u.setTipo(rs.getString("tipo"));
+				    u.setUsuario(rs.getString("usuario"));
+				    u.setContraseña(rs.getString("contraseña"));
 				    u.setNombreYapellido(rs.getString("nombreYApellido"));
 				    u.setDni(rs.getInt("dni"));
 				    u.setDireccion(rs.getString("direccion"));

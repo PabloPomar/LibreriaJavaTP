@@ -148,7 +148,7 @@ input[type=text], select {
     <!-- Aca va el Loggin -->
 
 
-  <form action="Login", method="post"> 
+  <form action="Login" method="post"> 
 	  <input type="text" name="aUsuario" placeholder="Usuario"  required>
 	  <input type="text" name="aContraseña" placeholder="Contraseña" required>
 	  <input type="submit" class=botonRojo2 value="Log in">

@@ -55,14 +55,22 @@ public class Login extends HttpServlet {
 			
 			Usuario us = ctrl.login(u);
 			
+			if(us==null) {
+				
+				pagina = request.getServletContext().getRequestDispatcher("/Login.jsp");
+				
+			}
+			else {
+			request.getSession().setAttribute("usuarioActual", us);
+			
 			switch (us.getTipo()) {
 				case "usuario": pagina = request.getServletContext().getRequestDispatcher("/PaginaPrincipal");
 							break;
-				case "administrador": pagina = request.getServletContext().getRequestDispatcher("/paginaPrincipalAdmin.jsp");
+				case "administrador": pagina = request.getServletContext().getRequestDispatcher("/PaginaPrincipalAdmin.jsp");
 				break;
 				default: request.getServletContext().getRequestDispatcher("/Login.jsp");
 			}
-		 
+			}
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
