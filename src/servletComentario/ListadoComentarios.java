@@ -1,7 +1,8 @@
-package servletLogin;
+package servletComentario;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,21 +11,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controlador.CtrlAMBCUsuario;
-import entidades.Autor;
-import entidades.Usuario;
+import controlador.CtrlAMBCLibro;
+import controlador.CtrlComentario;
+import entidades.Comentario;
+import entidades.Libro;
 
 /**
- * Servlet implementation class Login
+ * Servlet implementation class ListadoComentarios
  */
-@WebServlet("/Login")
-public class Login extends HttpServlet {
+@WebServlet(description = "Lista de Comentarios según libro", urlPatterns = { "/ListadoComentarios" })
+public class ListadoComentarios extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public ListadoComentarios() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,46 +43,22 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-		CtrlAMBCUsuario ctrl = new CtrlAMBCUsuario();
-		Usuario u = new Usuario();
+		CtrlComentario ctrlComentario = new CtrlComentario();
+		CtrlAMBCLibro ctrlLibro = new CtrlAMBCLibro();
+		ArrayList<Comentario> comentarios = null;
+		Libro libro = new Libro();
 		PrintWriter pwriter=response.getWriter();	
-		String usuario = request.getParameter("aUsuario");	
-		String contraseña = request.getParameter("aContraseña");	
-		u.setUsuario(usuario);
-		u.setContraseña(contraseña);
 		RequestDispatcher pagina = null;	
-
+		
 		try {
-			
-			Usuario us = ctrl.login(u);
-			
-			if(us==null) {
-				
-				pagina = request.getServletContext().getRequestDispatcher("/Login.jsp");
-				
-			}
-			else {
-			request.getSession().setAttribute("usuarioActual", us);
-			
-			switch (us.getTipo()) {
-				case "usuario": pagina = request.getServletContext().getRequestDispatcher("/PaginaPrincipal");
-							break;
-				case "administrador": pagina = request.getServletContext().getRequestDispatcher("/PaginaPrincipalAdmin.jsp");
-				break;
-				default: request.getServletContext().getRequestDispatcher("/Login.jsp");
-			}
-			}
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		pagina.forward(request, response);
-		
+			String idLibro = request.getParameter("aIdLibro");
+			Libro l = ctrlLibro.getById(Integer.parseInt(idLibro)); /* busca un libro por su ID*/
+			comentarios = ctrlComentario.getByLibro(libro);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		/*falta responder el pedido*/
 		
 	}
 

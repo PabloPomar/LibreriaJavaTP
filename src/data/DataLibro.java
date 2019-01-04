@@ -64,7 +64,7 @@ public class DataLibro {
 	
 	
 	
-	/* add para agragar libros */ 
+	/* add para agregar libros */ 
 	
 	
 	public void add(Libro l) throws Exception{
