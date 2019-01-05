@@ -124,7 +124,19 @@ input[type=text], select {
   <div class="column1" > 
   <!-- Aca va el buscador de libros -->
 
-
+ <table>
+   <tr>
+   <td>
+  <label>Bienvenido : ${usuarioActual.getUsuario()}  </label> 
+   </td>
+      <form action="LogOut" method="get"> 
+   <td>   
+	  <input type="submit" class=botonRojo2 value="Log out">
+   </td>  
+  </form>
+  </tr>
+  
+  </table>
   
   
   <table>
@@ -148,11 +160,16 @@ input[type=text], select {
     <!-- Aca va el Loggin -->
 
 
+
   <form action="Login" method="post"> 
 	  <input type="text" name="aUsuario" placeholder="Usuario"  required>
 	  <input type="text" name="aContraseña" placeholder="Contraseña" required>
 	  <input type="submit" class=botonRojo2 value="Log in">
   </form>
+ 
+  
+  
+
   <p> ¿Aun no tienes usuario? <a href="RegistroUsuario.jsp">Registrate</a> </p>
 
 
@@ -176,7 +193,7 @@ input[type=text], select {
   <input type="submit" class=botonRojo2 value="Libros">
   </td>
 </form>
-<form action="">
+<form action="IniciarCarrito" method="post">
   <td>
   <input type="submit" class=botonRojo2 value="Carrito">
   </td>

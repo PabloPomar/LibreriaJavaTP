@@ -29,9 +29,15 @@
   <input type="submit" class=botonGris value="Compras">
 </form> 
 
-<form action="GeneradorReportes.jsp" method="get">
+<form action="GeneradorReportes.jsp" >
   <input type="submit" class=botonGris value="Listados">
 </form> 
+
+<form action="LogOut" method="get">
+  <input type="submit" class=botonGris value="LogOut">
+</form> 
+
+
 </div>
 
 

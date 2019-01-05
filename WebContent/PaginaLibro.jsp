@@ -128,8 +128,20 @@ input[type=text], select {
   <div class="column1" > 
   <!-- Aca va el buscador de libros -->
 
-
+ <table>
+   <tr>
+   <td>
+  <label>Bienvenido : ${usuarioActual.getUsuario()}  </label> 
+   </td>
+      <form action="LogOut" method="get"> 
+   <td>   
+	  <input type="submit" class=botonRojo2 value="Log out">
+   </td>  
+  </form>
+  </tr>
   
+  </table>
+
   
   <table>
   <tr>
@@ -180,7 +192,7 @@ input[type=text], select {
   <input type="submit" class=botonRojo2 value="Libros">
   </td>
 </form>
-<form action="">
+<form action="IniciarCarrito" method="post">
   <td>
   <input type="submit" class=botonRojo2 value="Carrito">
   </td>

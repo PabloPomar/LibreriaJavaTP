@@ -1,5 +1,8 @@
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix='c'%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@page import="java.util.ArrayList"%>
+<%@page import="Carrito.*"%>
+<%@page import="entidades.*"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -7,6 +10,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="Estilos/Estilos.css">
+
 
 <style>
 * {
@@ -91,18 +95,17 @@ input[type=text], select {
   box-sizing: border-box;
 }
  
-
-
-
+ 
 </style>
 
 
 
-<title>Listado de Libros</title>
-
-
+<title>Pagina del Carrito</title>
 </head>
 <body>
+
+
+
 
 <div class="wrapperCenter2"> 
 
@@ -125,20 +128,6 @@ input[type=text], select {
   <!-- Aca va el buscador de libros -->
 
 
-
- <table>
-   <tr>
-   <td>
-  <label>Bienvenido : ${usuarioActual.getUsuario()}  </label> 
-   </td>
-      <form action="LogOut" method="get"> 
-   <td>   
-	  <input type="submit" class=botonRojo2 value="Log out">
-   </td>  
-  </form>
-  </tr>
-  
-  </table>
   
   
   <table>
@@ -201,23 +190,69 @@ input[type=text], select {
 
 </div>
 
-
-<c:forEach items="${listaLibros}" var="libro">
-<div class="wrapper3">
-<form action="">
-<input type="hidden" name="aIdLibro" value= ${libro.getIdLibro()} >
-  <h2 class=h2>  TITULO: ${libro.getTitulo()} //// Genero:  ${libro.getGenero()} //// Autor: ${libro.getAutor().getNombre()}  </h2>
-   <input type="submit" class=botonRojo2 value="Ver Mas">
-
-
-</form>
-</div>    
-</c:forEach>
-
-
-
-
-
+	<%
+	Carrito carrito = (Carrito) request.getSession().getAttribute("carritoActual");
+	float subtotal = 0;
+	float total = 0;
+	
+    if (carrito == null) {
+	
+    carrito = new Carrito();
+	request.getSession().setAttribute("carritoActual", carrito);
+	
+    }
+    
+    ArrayList<LineaVenta> items = carrito.getItems();
+		
+    if (items.size() == 0)
+    {
+        out.println("<h3>Tu Carrito esta vacio.</h3>");
+    }
+    else
+    {
+    
+    	int numItems = items.size();
+	%>
+	<br>
+	<table >
+	<tr><th>Titulo</th><th>Cantidad</th><th>Precio</th><th>Subtotal</th><th>Total</th></tr>
+	 <%  for (int i=0; i < numItems; i++)
+        {  
+		 LineaVenta linea = (LineaVenta) items.get(i);
+		 
+         out.print("<tr><td>");
+         out.print(linea.getLibro().getTitulo());
+         out.print("</td><td>");
+         out.print(linea.getCantidad());
+         out.print("</td><td>");
+         out.print(linea.getLibro().getPrecio());
+         out.print("</td><td>");
+         subtotal = linea.getLibro().getPrecio() * linea.getCantidad();
+         out.print(subtotal);
+         out.print("</td><td>");
+         total = total + subtotal;
+         out.print(total);
+         out.println("</td><td>"+
+                 "<a href=\"RemoverItem?item="+
+                 i+"\">Remove</a></td></tr>");
+        
+        
+        
+        }
+	
+	 %>
+	
+	</table>
+	<form action="">
+	  <input type="submit" class=botonRojo2 value="Comprar">
+	</form>
+	
+	
+	
+	
+	
+	
+	<% } %>
 
 
 
