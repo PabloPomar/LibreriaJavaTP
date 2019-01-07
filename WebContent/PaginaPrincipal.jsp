@@ -230,7 +230,7 @@ input[type=text], select {
    <h3 class=h3> GENERO:         ${libro1.getGenero()}  AUTOR:           ${libro1.getAutor().getNombre()}   </h3>
    <h4> Descripcion: ${libro1.getDescripcion()}     </h4>
    <h3 class=h3> PRECIO: $ ${libro1.getPrecio()}     </h3>
-   <form action="ListadoComentarios" method="post">   
+   <form action="RedirigirPagina" method="get">   
    	 <input type="hidden"  name=aIdLibro value= ${libro1.getIdLibro()}   >
      <input type="submit" class=botonRojo2 value="Ver Mas">
    </form>
@@ -254,7 +254,7 @@ input[type=text], select {
  <h3 class=h3> GENERO:         ${libro2.getGenero()}  AUTOR:         ${libro2.getAutor().getNombre()}     </h3>
  <h4> Descripcion: ${libro2.getDescripcion()}     </h4>
  <h3 class=h3> PRECIO: $ ${libro2.getPrecio()}     </h3>
-  <form action="ListadoComentarios" method="post">   
+  <form action="RedirigirPagina" method="get">   
    	 <input type="hidden"  name=aIdLibro value= ${libro2.getIdLibro()}   >
      <input type="submit" class=botonRojo2 value="Ver Mas">
    </form>
