@@ -228,8 +228,8 @@ input[type=text], select {
 <div class="wrapperCenter2"> 
 
 <form action="AgregarComentario" method="post">
-<input type="hidden" name="aIdLibro" value=${libroActual.getIdLibro()}>
-<input type="text" name="aComentario" placeholder="¿Quiere dejar un comentario?">
+<input type="hidden"  name=aIdLibro value= ${libroActual.getIdLibro()}   >
+<input type="text" name="aComentario" placeholder="¿Quiere dejar un comentario?" required>
  <input type="submit" class=botonRojo2 value="Comentar">
 
 </form>

@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controlador.CtrlAMBCLibro;
 import controlador.CtrlComentario;
 import entidades.*;
 
@@ -45,9 +46,18 @@ public class AgregarComentario extends HttpServlet {
 		CtrlComentario ctrl = new CtrlComentario();
 		Comentario comentario = new Comentario();
 		PrintWriter pwriter=response.getWriter();	
-
+		int idLibro = Integer.parseInt(request.getParameter("aIdLibro"));
+		Usuario user = (Usuario) request.getSession().getAttribute("usuarioActual");
+		
+		
+		if(user == null) {
+			getServletConfig().getServletContext().getRequestDispatcher("/Login.jsp").forward(request,response);
+			
+		}
+		else {
+		
 		comentario.setDescripcion(request.getParameter("aComentario"));
-		comentario.setUsuario((Usuario) request.getSession().getAttribute("usuarioActual"));
+		comentario.setUsuario(user);
 		Date fecha = new Date();
 		comentario.setFecha_creacion(fecha);
 		comentario.setLibro((Libro) request.getAttribute("libroActual"));
@@ -59,11 +69,14 @@ public class AgregarComentario extends HttpServlet {
 			pagina.forward(request, response);
 			
 		} catch (Exception e) {
+			pwriter.println("El comentario no se pudo agregar");
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("aIdLibro", idLibro);
+		getServletConfig().getServletContext().getRequestDispatcher("/ListadoComentarios").forward(request,response);
 		
-
+		}
 	}
 
 }
