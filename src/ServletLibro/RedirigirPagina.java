@@ -43,7 +43,7 @@ public class RedirigirPagina extends HttpServlet {
 		try {
 			Libro libro = ctrl.getById(idLibro);
 			request.setAttribute("libroActual", libro);
-			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jpg");
+			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jsp");
 			pagina.forward(request, response);
 			
 		} catch (Exception e) {
