@@ -20,7 +20,7 @@ public class DataComentario {
 		ArrayList<Comentario> comentarios = null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idComentario, descripcion, fecha_creacion, idUsuario, idLibro, usuario from comentarios when idLibro = ?");
+					"select idComentario, descripcion, fecha_creacion, idUsuario, idLibro, usuario from comentarios where idLibro = ?");
 			stmt.setInt(1, libro.getIdLibro());
 			rs=stmt.executeQuery();
 			

@@ -227,7 +227,7 @@ input[type=text], select {
 
 <div class="wrapperCenter2"> 
 
-<form action="">
+<form action="AgregarComentario">
 <input type="text" name="aComentario" placeholder="¿Quiere dejar un comentario?">
  <input type="submit" class=botonRojo2 value="Comentar">
 

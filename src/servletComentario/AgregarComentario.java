@@ -11,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controlador.CtrlComentario;
-import entidades.Comentario;
+import entidades.*;
+
+import java.util.Date;
 
 /**
  * Servlet implementation class AgregarComentario
@@ -45,7 +47,10 @@ public class AgregarComentario extends HttpServlet {
 		PrintWriter pwriter=response.getWriter();	
 
 		comentario.setDescripcion(request.getParameter("aComentario"));
-		/*aca hay que asignar autor, fecha y libro */
+		comentario.setUsuario((Usuario) request.getSession().getAttribute("usuarioActual"));
+		Date fecha = new Date();
+		comentario.setFecha_creacion(fecha);
+		/*aca falta asignar libro */
 		
 		RequestDispatcher pagina = null;	
 		

@@ -52,13 +52,13 @@ public class ListadoComentarios extends HttpServlet {
 		
 		try {
 			String idLibro = request.getParameter("aIdLibro");
-			Libro l = ctrlLibro.getById(Integer.parseInt(idLibro)); /* busca un libro por su ID*/
+			libro = ctrlLibro.getById(Integer.parseInt(idLibro)); /* busca un libro por su ID*/
 			comentarios = ctrlComentario.getByLibro(libro);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
-		/*falta responder el pedido*/
+		request.setAttribute("aComentarios", comentarios);
 		
 	}
 
