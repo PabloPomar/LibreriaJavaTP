@@ -50,12 +50,13 @@ public class AgregarComentario extends HttpServlet {
 		comentario.setUsuario((Usuario) request.getSession().getAttribute("usuarioActual"));
 		Date fecha = new Date();
 		comentario.setFecha_creacion(fecha);
-		/*aca falta asignar libro */
-		
+		comentario.setLibro((Libro) request.getAttribute("libroActual"));
 		RequestDispatcher pagina = null;	
 		
 		try {
 			ctrl.addComentario(comentario);
+			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jpg");
+			pagina.forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();

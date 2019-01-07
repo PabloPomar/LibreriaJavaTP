@@ -215,7 +215,7 @@ input[type=text], select {
      <h3 class=h3> GENERO:        ${libro0.getGenero()}  AUTOR:       ${libro0.getAutor().getNombre()}   </h3>
      <h4> Descripcion: ${libro0.getDescripcion()}     </h4>
      <h3 class=h3> PRECIO: $ ${libro0.getPrecio()}     </h3>
-    <form action="">   
+    <form action="RedirigirPagina" method="get">   
    	 <input type="hidden"  name=aIdLibro value= ${libro0.getIdLibro()}   >
      <input type="submit" class=botonRojo2 value="Ver Mas">
    </form>
