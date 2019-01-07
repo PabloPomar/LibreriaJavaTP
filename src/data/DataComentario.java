@@ -20,7 +20,7 @@ public class DataComentario {
 		ArrayList<Comentario> comentarios = null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idComentario, descripcion, fecha_creacion, idUsuario, idLibro, usuario from comentarios where idLibro = ?");
+					"select idComentario, descripcion, fecha_creacion, idUsuario, idLibro, usuario from comentario where idLibro = ?");
 			stmt.setInt(1, libro.getIdLibro());
 			rs=stmt.executeQuery();
 			
@@ -59,12 +59,15 @@ public class DataComentario {
 		
 		PreparedStatement stmt=null;
 		ResultSet keyResultSet=null;
+		java.util.Date uFecha = new java.util.Date();
+		uFecha = c.getFecha_creacion();
+		 java.sql.Date sqlFecha = convertUtilToSql(uFecha);
 		
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"insert into comentario (descripcion, fecha_creacion, idUsuario, idLibro, usuario) values (?,?,?,?,?)");
+					"insert into comentario (descripcion, fecha_creacion, idUsuario, idLibro, usuario) values (?,?,?,?,?)",PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, c.getDescripcion());
-			stmt.setDate(2, (Date) c.getFecha_creacion());
+			stmt.setDate(2, sqlFecha);
 			stmt.setInt(3, c.getUsuario().getIdUsuario());
 			stmt.setInt(4, c.getLibro().getIdLibro());
 			stmt.setString(5, c.getUsuario().getUsuario());
@@ -107,5 +110,12 @@ public class DataComentario {
 				}
 		}
 	}	
+	
+    private static java.sql.Date convertUtilToSql(java.util.Date uDate) {
+        java.sql.Date sDate = new java.sql.Date(uDate.getTime());
+        return sDate;
+    }
+	
+	
 	
 }
