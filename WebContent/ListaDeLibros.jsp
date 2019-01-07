@@ -204,7 +204,7 @@ input[type=text], select {
 
 <c:forEach items="${listaLibros}" var="libro">
 <div class="wrapper3">
-<form action="ListadoComentarios" method="post">
+<form action="RedirigirPagina" method="get">
 <input type="hidden" name="aIdLibro" value= ${libro.getIdLibro()} >
   <h2 class=h2>  TITULO: ${libro.getTitulo()} //// Genero:  ${libro.getGenero()} //// Autor: ${libro.getAutor().getNombre()}  </h2>
    <input type="submit" class=botonRojo2 value="Ver Mas">

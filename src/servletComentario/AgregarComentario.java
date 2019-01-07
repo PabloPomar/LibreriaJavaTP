@@ -45,18 +45,10 @@ public class AgregarComentario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CtrlComentario ctrl = new CtrlComentario();
 		Comentario comentario = new Comentario();
-		CtrlAMBCLibro ctrlLibro = new CtrlAMBCLibro();
 		PrintWriter pwriter=response.getWriter();	
 		int idLibro = Integer.parseInt(request.getParameter("aIdLibro"));
-		Libro libro = new Libro();
 		Usuario user = (Usuario) request.getSession().getAttribute("usuarioActual");
 		
-		try {
-			libro = ctrlLibro.getById(idLibro);
-		} catch (Exception e1) {
-			pwriter.println("Libro no encontrado");
-			e1.printStackTrace();
-		}
 		
 		if(user == null) {
 			getServletConfig().getServletContext().getRequestDispatcher("/Login.jsp").forward(request,response);
@@ -68,12 +60,7 @@ public class AgregarComentario extends HttpServlet {
 		comentario.setUsuario(user);
 		Date fecha = new Date();
 		comentario.setFecha_creacion(fecha);
-<<<<<<< HEAD
-		comentario.setLibro(libro);
-		
-=======
 		comentario.setLibro((Libro) request.getAttribute("libroActual"));
->>>>>>> branch 'master' of https://github.com/PabloPomar/LibreriaJavaTP.git
 		RequestDispatcher pagina = null;	
 		
 		try {
