@@ -68,12 +68,18 @@ public class AgregarComentario extends HttpServlet {
 		comentario.setUsuario(user);
 		Date fecha = new Date();
 		comentario.setFecha_creacion(fecha);
+<<<<<<< HEAD
 		comentario.setLibro(libro);
 		
+=======
+		comentario.setLibro((Libro) request.getAttribute("libroActual"));
+>>>>>>> branch 'master' of https://github.com/PabloPomar/LibreriaJavaTP.git
 		RequestDispatcher pagina = null;	
 		
 		try {
 			ctrl.addComentario(comentario);
+			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jpg");
+			pagina.forward(request, response);
 			
 		} catch (Exception e) {
 			pwriter.println("El comentario no se pudo agregar");
