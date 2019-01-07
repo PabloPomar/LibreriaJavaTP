@@ -12,7 +12,6 @@
 * {
   box-sizing: border-box;
 }
-
 /* Create three equal columns that floats next to each other */
 .column1 {
   float: left;
@@ -22,7 +21,6 @@
   background-color: #f4f4f4;
   height: 210px;
 }
-
 .column25 {
   float: left;
   width: 25%;
@@ -31,7 +29,6 @@
   background-color: #f4f4f4;
   height: 300px;
 }
-
 .column75 {
   float: left;
   width: 75%;
@@ -40,18 +37,12 @@
   background-color: #f4f4f4;
   height: 300px;
 }
-
-
-
-
 /* Clear floats after the columns */
 .row:after {
   content: "";
   display: table;
   clear: both;
 }
-
-
 h2 {
 font-family: Impact, Charcoal, sans-serif;
 font-size: 24px;
@@ -64,7 +55,6 @@ font-style: normal;
 font-variant: small-caps;
 text-transform: none;
 }
-
 h3 {
 font-family: Impact, Charcoal, sans-serif;
 font-size: 18px;
@@ -77,10 +67,6 @@ font-style: normal;
 font-variant: small-caps;
 text-transform: none;
 }
-
-
-
-
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -91,9 +77,6 @@ input[type=text], select {
   box-sizing: border-box;
 }
  
-
-
-
 </style>
 
 
@@ -230,7 +213,7 @@ input[type=text], select {
    <h3 class=h3> GENERO:         ${libro1.getGenero()}  AUTOR:           ${libro1.getAutor().getNombre()}   </h3>
    <h4> Descripcion: ${libro1.getDescripcion()}     </h4>
    <h3 class=h3> PRECIO: $ ${libro1.getPrecio()}     </h3>
-   <form action="">   
+   <form action="RedirigirPagina" method="get">   
    	 <input type="hidden"  name=aIdLibro value= ${libro1.getIdLibro()}   >
      <input type="submit" class=botonRojo2 value="Ver Mas">
    </form>
@@ -254,7 +237,7 @@ input[type=text], select {
  <h3 class=h3> GENERO:         ${libro2.getGenero()}  AUTOR:         ${libro2.getAutor().getNombre()}     </h3>
  <h4> Descripcion: ${libro2.getDescripcion()}     </h4>
  <h3 class=h3> PRECIO: $ ${libro2.getPrecio()}     </h3>
-  <form action="">   
+  <form action="RedirigirPagina" method="get">   
    	 <input type="hidden"  name=aIdLibro value= ${libro2.getIdLibro()}   >
      <input type="submit" class=botonRojo2 value="Ver Mas">
    </form>

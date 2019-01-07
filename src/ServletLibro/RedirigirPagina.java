@@ -35,6 +35,15 @@ public class RedirigirPagina extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		CtrlAMBCLibro ctrl = new CtrlAMBCLibro();
 		PrintWriter pwriter=response.getWriter();	
 		RequestDispatcher pagina = null;
@@ -43,7 +52,7 @@ public class RedirigirPagina extends HttpServlet {
 		try {
 			Libro libro = ctrl.getById(idLibro);
 			request.setAttribute("libroActual", libro);
-			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jpg");
+			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jsp");
 			pagina.forward(request, response);
 			
 		} catch (Exception e) {
@@ -51,13 +60,7 @@ public class RedirigirPagina extends HttpServlet {
 		} 
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 		
-	}
+	
 
 }

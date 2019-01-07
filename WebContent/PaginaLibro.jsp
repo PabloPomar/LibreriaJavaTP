@@ -210,12 +210,12 @@ input[type=text], select {
  </div> 
  <div class="column75" > 
           <!--  ACA VAN LOS DETALLES DEL LIBRO --> 
-    <h2 class=h2> ISBN: ${libroActual.getIsbn()}</h2>
-    <h2 class=h2> TITULO:   ${libroActual.getTitulo()}  NRO Edicion: </h2>
-     <h3 class=h3> GENERO:  ${libroActual.getGenero()}   AUTOR:  ${libroActual.getAutor()}     </h3>
-     <h4> Descripcion:  ${libroActual.getDescripcion()}   </h4>
-     <h3 class=h3>EDITORIAL:  ${libroActual.getEditorial()}      PRECIO: $ ${libroActual.getPrecio }  </h3>
-    <form action="">   
+    <h2 class=h2> ISBN: ${libroActual.getIsbn()} </h2>
+    <h2 class=h2> TITULO:  ${libroActual.getTitulo()}  /////  NRO Edicion: ${libroActual.getNroEdicion()} </h2>
+     <h3 class=h3> GENERO: ${libroActual.getGenero()} /////   AUTOR: ${libroActual.getAutor().getNombre()}       </h3>
+     <h4> Descripcion: ${libroActual.getDescripcion()}    </h4>
+     <h3 class=h3>EDITORIAL:  ${libroActual.getEditorial()}   /////    PRECIO: $ ${libroActual.getPrecio()}    </h3>
+    <form action="">  
    	 <input type="hidden"  name=aIdLibro value= ${libroActual.getIdLibro()}  >
    	 <input type="number" name="aCantidad"
        min="1" max="10" placeholder=1>
@@ -227,7 +227,7 @@ input[type=text], select {
 
 <div class="wrapperCenter2"> 
 
-<form action="AgregarComentario">
+<form action="AgregarComentario" method="post">
 <input type="hidden" name="aIdLibro" value=${libroActual.getIdLibro()}>
 <input type="text" name="aComentario" placeholder="¿Quiere dejar un comentario?">
  <input type="submit" class=botonRojo2 value="Comentar">
@@ -238,6 +238,14 @@ input[type=text], select {
 
 <div class="wrapperCenter2">
 <h2 class=h2> COMENTARIOS </h2>
+<c:forEach items="${listaComentarios}" var="comentario"> 
+<div class="wrapper3">
+<h3 class=h3>El usuario: comentario.getUsuario().getUsuario()  Comento en: comentario.getFecha_creacion()  </h3>
+<h4>  comentario.getDescripcion()  </h4>
+</div>
+</c:forEach>
+
+
 
  </div>
 
