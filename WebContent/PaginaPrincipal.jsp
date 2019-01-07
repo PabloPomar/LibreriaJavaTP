@@ -95,6 +95,7 @@ input[type=text], select {
 
 <div class="row">
   <div class="column1" > 
+  <!-- Que lindo dia che-->
      <!-- ACA VA EL LINK A LA PAGINA PRINCIPAL-->
   
 <form action="PaginaPrincipal" method="get">
