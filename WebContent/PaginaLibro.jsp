@@ -215,10 +215,10 @@ input[type=text], select {
      <h3 class=h3> GENERO: ${libroActual.getGenero()} /////   AUTOR: ${libroActual.getAutor().getNombre()}       </h3>
      <h4> Descripcion: ${libroActual.getDescripcion()}    </h4>
      <h3 class=h3>EDITORIAL:  ${libroActual.getEditorial()}   /////    PRECIO: $ ${libroActual.getPrecio()}    </h3>
-    <form action="">  
+    <form action="AgregarItam" method="post">  
    	 <input type="hidden"  name=aIdLibro value= ${libroActual.getIdLibro()}  >
    	 <input type="number" name="aCantidad"
-       min="1" max="10" placeholder=1>
+       min="1" max=${libroActual.getCantidadPropia() + libroActual.getCantidadConsignada()} placeholder=1>
      <input type="submit" class=botonRojo2 value="Agregar Al Carrito">
    </form>
  </div> 

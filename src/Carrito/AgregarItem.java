@@ -89,15 +89,15 @@ public class AgregarItem extends HttpServlet {
 				fV.setLibreria(librerias.get(0));
 				fV.setUsuario(user);
 				request.getSession().setAttribute("facturaActual", fV);
-				getServletConfig().getServletContext().getRequestDispatcher("/AgregarItem").forward(request,response);	
+				facVen= fV;
 					
-			} else {
+			}
 	
 				 lineaV.setFactura(facVen);
 				 lineaV.setCantidad(cantidad);
 				 lineaV.setLibro(libro);
 				
-			}
+		
 			
 			if (carrito == null) {
 				
@@ -108,7 +108,7 @@ public class AgregarItem extends HttpServlet {
 			
 			carrito.agregarLinea(lineaV);
 			System.out.println("Linea Agregada");
-		
+			getServletConfig().getServletContext().getRequestDispatcher("/PaginaCarrito.jsp").forward(request,response);
 		
 		}
 		
