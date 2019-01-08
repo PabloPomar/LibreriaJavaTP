@@ -30,11 +30,17 @@ public class LogOut extends HttpServlet {
 		 HttpSession session = request.getSession();
 	        if(session.getAttribute("usuarioActual") != null){
 	            session.removeAttribute("usuarioActual");
-	            response.sendRedirect("PaginaPrincipal");
 	        }
-	        else {
+	        if(session.getAttribute("carritoActual") != null) {
+	        	session.removeAttribute("carritoActual");	
+	        }
+	        if(session.getAttribute("facturaActual") != null) {
+	        	session.removeAttribute("facturaActual");
+	        }
+	        
+	        
 	        	response.sendRedirect("PaginaPrincipal");
-	        }
+
 		
 		
 	}

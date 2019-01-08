@@ -127,7 +127,19 @@ input[type=text], select {
   <div class="column1" > 
   <!-- Aca va el buscador de libros -->
 
-
+ <table>
+   <tr>
+   <td>
+  <label>Bienvenido : ${usuarioActual.getUsuario()}  </label> 
+   </td>
+      <form action="LogOut" method="get"> 
+   <td>   
+	  <input type="submit" class=botonRojo2 value="Log out">
+   </td>  
+  </form>
+  </tr>
+  
+  </table>
   
   
   <table>
@@ -214,6 +226,7 @@ input[type=text], select {
     	int numItems = items.size();
 	%>
 	<br>
+	<div class="wrapperCenter2">
 	<table >
 	<tr><th>Titulo</th><th>Cantidad</th><th>Precio</th><th>Subtotal</th><th>Total</th></tr>
 	 <%  for (int i=0; i < numItems; i++)
@@ -233,7 +246,7 @@ input[type=text], select {
          total = total + subtotal;
          out.print(total);
          out.println("</td><td>"+
-                 "<a href=\"RemoverItem?item="+
+                 "<a href=\"RemoverItem?aItemIndex="+
                  i+"\">Remove</a></td></tr>");
         
         
@@ -243,10 +256,12 @@ input[type=text], select {
 	 %>
 	
 	</table>
+	
 	<form action="">
 	  <input type="submit" class=botonRojo2 value="Comprar">
 	</form>
 	
+	</div>
 	
 	
 	

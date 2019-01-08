@@ -26,16 +26,8 @@ public class RemoverItem extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
 		int itemIndex = Integer.parseInt(request.getParameter("aItemIndex"));
+		System.out.println(itemIndex);
 		Carrito carrito = (Carrito) request.getSession().getAttribute("carritoActual");
 		
 		if (carrito == null) {
@@ -46,7 +38,27 @@ public class RemoverItem extends HttpServlet {
 		}
 		
 		carrito.removerLinea(itemIndex);
+		getServletConfig().getServletContext().getRequestDispatcher("/PaginaCarrito.jsp").forward(request,response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			
+		int itemIndex = Integer.parseInt(request.getParameter("aItemIndex"));
+		System.out.println(itemIndex);
+		Carrito carrito = (Carrito) request.getSession().getAttribute("carritoActual");
 		
+		if (carrito == null) {
+			
+			carrito = new Carrito();
+			request.getSession().setAttribute("carritoActual", carrito);
+			
+		}
+		
+		carrito.removerLinea(itemIndex);
+		getServletConfig().getServletContext().getRequestDispatcher("/PaginaCarrito.jsp").forward(request,response);
 		
 		
 	}
