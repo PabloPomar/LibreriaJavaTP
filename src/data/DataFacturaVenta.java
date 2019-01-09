@@ -4,6 +4,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import entidades.FacturaCompra;
+import entidades.FacturaVenta;
+import entidades.Libro;
+import util.AppDataException;
+
 
 
 public class DataFacturaVenta {
@@ -35,6 +40,44 @@ public class DataFacturaVenta {
 		}
 		return maxNro;
 	}
+	
+
+	
+	public int addmasClave(FacturaVenta fv) throws Exception{
+		PreparedStatement stmt=null;
+		java.util.Date uFecha = new java.util.Date();
+		uFecha = fv.getFechaEmision();
+		int clave=1155;
+		java.sql.Date sqlFecha = convertUtilToSql(uFecha);
+		ResultSet keyResultSet=null;	
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement("INSERT INTO factura_venta (fechaEmision, idUsuario, cuitLibreria) VALUES (?, ?, ?)",PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt.setDate(1, sqlFecha);
+			stmt.setInt(2, fv.getUsuario().getIdUsuario());
+			stmt.setInt(3, fv.getLibreria().getCuit());
+			stmt.executeUpdate();
+			keyResultSet=stmt.getGeneratedKeys();
+			if(keyResultSet!=null && keyResultSet.next()){
+				fv.setNroFacturaVenta(keyResultSet.getInt(1));
+				clave=keyResultSet.getInt(1);
+			}
+			
+		}  catch (SQLException | AppDataException e) {
+			throw e;
+		}
+		try {
+			if(keyResultSet!=null)keyResultSet.close();
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return clave;
+		
+	}
+	
+	
+	
 	
 	
     private static java.sql.Date convertUtilToSql(java.util.Date uDate) {

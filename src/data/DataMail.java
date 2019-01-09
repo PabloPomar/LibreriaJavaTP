@@ -59,5 +59,35 @@ public class DataMail {
 	}
 	
 	
+	public void add(Mail m) throws Exception{
+		PreparedStatement stmt=null;
+		ResultSet keyResultSet=null;	
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement( "INSERT INTO mail (idUsuario, idAutor, mail) VALUES (?, ?, ?) ",PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt.setInt(1, m.getUsuario().getIdUsuario());
+			stmt.setInt(2, m.getAutor().getIdAutor());
+			stmt.setString(3, m.getUsuario().getMail());
+			stmt.executeUpdate();
+			keyResultSet=stmt.getGeneratedKeys();
+			if(keyResultSet!=null && keyResultSet.next()){
+				m.setIdMail(keyResultSet.getInt(1));
+			}
+			
+		}  catch (SQLException | AppDataException e) {
+			throw e;
+		}
+		try {
+			if(keyResultSet!=null)keyResultSet.close();
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
+	
+	
+	
 	
 }

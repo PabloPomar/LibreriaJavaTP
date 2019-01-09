@@ -438,7 +438,7 @@ public class DataLinea {
 	}
 	
 	
-	/* metodo de agregado de linea de compra */ 
+	/* metodo de agregado de lineas */ 
 	
 	
 	public void addLC(LineaCompra lc) throws Exception{
@@ -471,7 +471,34 @@ public class DataLinea {
 		
 	}
 	
-	
+	public void addLV(LineaVenta lv) throws Exception{
+		PreparedStatement stmt=null;
+		ResultSet keyResultSet=null;	
+		try {
+
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement("INSERT INTO linea_venta (cantidad, idLibro, nroFacturaVenta) VALUES (?, ?, ?)",PreparedStatement.RETURN_GENERATED_KEYS);	
+			stmt.setInt(1, lv.getCantidad());
+			stmt.setInt(2,lv.getLibro().getIdLibro());
+			stmt.setInt(3, lv.getFactura().getNroFacturaVenta());
+			stmt.executeUpdate();
+			keyResultSet=stmt.getGeneratedKeys();
+			if(keyResultSet!=null && keyResultSet.next()){
+				lv.setIdLineaVenta(keyResultSet.getInt(1));
+			}
+			
+		}  catch (SQLException | AppDataException e) {
+			throw e;
+		}
+		try {
+			if(keyResultSet!=null)keyResultSet.close();
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 	
 	
 	

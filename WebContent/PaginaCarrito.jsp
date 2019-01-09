@@ -86,7 +86,7 @@ text-transform: none;
 
 
 input[type=text], select {
-  width: 100%;
+  width: 40%;
   padding: 12px 20px;
   margin: 8px 0;
   display: inline-block;
@@ -257,11 +257,28 @@ input[type=text], select {
 	
 	</table>
 	
-	<form action="">
-	  <input type="submit" class=botonRojo2 value="Comprar">
+		</div>
+		
+		<div class="wrapperCenter2">
+	
+	<form action="RegistrarCompra" method="post">
+	 <h2> Por favor introdusca los datos de remitente </h2>
+	 <label>Metodo de pago <select>  
+	 <option value="aTarjetaCredito">Tarjeta de credito</option>
+ 	 <option value="aTarjetaDebito">Tarjeta de debito</option> 
+  	 </select>
+	 </label> 
+	 <label> Nro Tarjeta: <input type="number" name="aNroTarjeta"> </label> <br>
+	 <label> clave de seguridad: <input type="number" name="aClaveSeguridad"> </label> <br>
+	 
+	 <label> Nombre del remitente: <input type="text" name="aNombreYApellido" value="${usuarioActual.getNombreYapellido()}">    </label>  <br>
+	 <label> Direccion: <input type="text" name="aDireccion" value="${usuarioActual.getDireccion()}">    </label>  <br>
+	 <label> telefono: <input type="text" name="aTelefono" value="${usuarioActual.getTelefono()}">    </label>  <br>
+	 <label> mail: <input type="text" name="aMail" value="${usuarioActual.getMail()}">    </label>   <br>
+	  <input type="submit" class=botonRojo2 value="Confirmar Compra" onsubmit="¿return confirm('¿Esta seguro de que desea realizar la compra (no hay vuelta atras)?');" >
 	</form>
 	
-	</div>
+	 </div>
 	
 	
 	

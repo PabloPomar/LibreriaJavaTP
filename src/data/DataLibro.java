@@ -247,10 +247,31 @@ public class DataLibro {
 		return validacion;		
 	}
 	
+	/*  Actualizar las cantidades  */
+	
 	public void updateCantPropia(Libro l, int cantidad) throws Exception{
 		PreparedStatement stmt=null; 
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement("update libro set cantPropia = cantPropia+? where idLibro=?;");
+			stmt.setInt(1, cantidad);
+			stmt.setInt(2, l.getIdLibro());
+			stmt.executeUpdate();
+		} catch (SQLException | AppDataException e) {
+			throw e;
+			}
+		try {
+			if(stmt!=null)stmt.close();
+			FactoryConexion.getInstancia().releaseConn();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			}
+		
+	}
+	
+	public void updateCantConsignada(Libro l, int cantidad) throws Exception{
+		PreparedStatement stmt=null; 
+		try {
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement("update libro set cantConsignada = cantConsignada+? where idLibro=?;");
 			stmt.setInt(1, cantidad);
 			stmt.setInt(2, l.getIdLibro());
 			stmt.executeUpdate();

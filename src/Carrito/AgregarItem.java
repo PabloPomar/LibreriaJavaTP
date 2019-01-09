@@ -107,7 +107,6 @@ public class AgregarItem extends HttpServlet {
 			}
 			
 			carrito.agregarLinea(lineaV);
-			System.out.println("Linea Agregada");
 			getServletConfig().getServletContext().getRequestDispatcher("/PaginaCarrito.jsp").forward(request,response);
 		
 		}
