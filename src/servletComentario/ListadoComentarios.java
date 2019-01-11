@@ -64,9 +64,11 @@ public class ListadoComentarios extends HttpServlet {
 			System.out.println(c.getDescripcion());
 		}
 		
-		request.setAttribute("libroActual", libro);
 		request.setAttribute("listaComentarios", comentarios);
-		getServletConfig().getServletContext().getRequestDispatcher("/PaginaLibro.jsp").forward(request,response);
+		
+		/* request.setAttribute("libroActual", libro);
+		
+		getServletConfig().getServletContext().getRequestDispatcher("/PaginaLibro.jsp").forward(request,response);*/
 		
 	}
 

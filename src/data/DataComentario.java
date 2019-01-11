@@ -36,6 +36,7 @@ public class DataComentario {
 						u.setIdUsuario(rs.getInt("idUsuario"));
 						u.setUsuario(rs.getString("usuario"));
 						c.setUsuario(u);
+						comentarios.add(c);
 					}
 			}	
 		

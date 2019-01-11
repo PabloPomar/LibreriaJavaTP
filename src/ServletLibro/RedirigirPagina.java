@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controlador.CtrlAMBCLibro;
+import controlador.CtrlComentario;
 import entidades.Comentario;
 import entidades.Libro;
 
@@ -45,22 +46,31 @@ public class RedirigirPagina extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		CtrlAMBCLibro ctrl = new CtrlAMBCLibro();
+		CtrlComentario ctrlComentario = new CtrlComentario();
 		PrintWriter pwriter=response.getWriter();	
 		RequestDispatcher pagina = null;
 		int idLibro = Integer.parseInt(request.getParameter("aIdLibro"));
+		Libro libro = null;
 		
 		try {
-			Libro libro = ctrl.getById(idLibro);
+			libro = ctrl.getById(idLibro);
 			request.setAttribute("libroActual", libro);
-			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jsp");
-			pagina.forward(request, response);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} 
-	}
-
 		
-	
+		ArrayList<Comentario> comentarios = null;
+		
+		try {
+			comentarios = ctrlComentario.getByLibro(libro);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+				
+		request.setAttribute("listaComentarios", comentarios);
+		pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jsp");
+		pagina.forward(request, response);
+	}
 
 }

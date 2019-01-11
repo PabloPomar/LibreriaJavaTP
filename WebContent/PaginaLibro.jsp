@@ -240,8 +240,8 @@ input[type=text], select {
 <h2 class=h2> COMENTARIOS </h2>
 <c:forEach items="${listaComentarios}" var="comentario"> 
 <div class="wrapper3">
-<h3 class=h3>El usuario: comentario.getUsuario().getUsuario()  Comento en: comentario.getFecha_creacion()  </h3>
-<h4>  comentario.getDescripcion()  </h4>
+<h3 class=h3> Usuario: ${comentario.getUsuario().getUsuario()}  Fecha: ${comentario.getFecha_creacion()}  </h3>
+<h4>  ${comentario.getDescripcion()}  </h4>
 </div>
 </c:forEach>
 

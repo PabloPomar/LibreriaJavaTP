@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controlador.CtrlAMBCLibro;
 import controlador.CtrlComentario;
 import entidades.*;
 
@@ -60,12 +59,16 @@ public class AgregarComentario extends HttpServlet {
 		comentario.setUsuario(user);
 		Date fecha = new Date();
 		comentario.setFecha_creacion(fecha);
-		comentario.setLibro((Libro) request.getAttribute("libroActual"));
+		Libro libro = new Libro();
+		libro.setIdLibro(idLibro);
+		comentario.setLibro(libro);
 		RequestDispatcher pagina = null;	
 		
 		try {
 			ctrl.addComentario(comentario);
-			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jpg");
+			request.removeAttribute("libroActual");
+			request.setAttribute("libroActual", libro);
+			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jsp");
 			pagina.forward(request, response);
 			
 		} catch (Exception e) {
@@ -73,8 +76,6 @@ public class AgregarComentario extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		request.setAttribute("aIdLibro", idLibro);
-		getServletConfig().getServletContext().getRequestDispatcher("/ListadoComentarios").forward(request,response);
 		
 		}
 	}
