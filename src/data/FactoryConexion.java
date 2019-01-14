@@ -2,6 +2,8 @@ package data;
 import java.sql.*;
 import java.util.Properties;
 
+import org.apache.logging.log4j.Level;
+
 import util.AppDataException;
 
 
@@ -15,7 +17,7 @@ public class FactoryConexion {
 	private final String userName = "root";
 
 	/** The password for the MySQL account (or empty for anonymous) */
-	private final String password = "admin";
+	private final String password = "admin ";
 
 	/** The name of the database we are testing with (this default is installed with MySQL) */
 	private final String dbName = "autores";
@@ -58,7 +60,7 @@ public class FactoryConexion {
 			        "jdbc:mysql://"+host+":"+port+"/"+dbName,connectionProps);			
 			}
 		} catch (SQLException e) {
-			throw new AppDataException(e, "Error al conectar a la base de datos");
+			throw new AppDataException(e, "Error al conectar a la base de datos", Level.ERROR);
 		}
 		cantConn++;
 		return conn;

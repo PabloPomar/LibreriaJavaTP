@@ -35,8 +35,10 @@ public class DataUsuario {
 				    u.setDireccion(rs.getString("direccion"));
 				    u.setTelefono(rs.getInt("telefono"));
 				    u.setMail(rs.getString("mail"));
-			}
-			
+			}			
+		} catch (SQLException e) {
+			AppDataException ade = new AppDataException(e, "Error al obtener el usuario.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
 		} catch (Exception e) {
 			throw e;
 		} finally {
@@ -70,7 +72,10 @@ public class DataUsuario {
 				u.setIdUsuario(keyResultSet.getInt(1));
 			}
 			
-		}  catch (SQLException | AppDataException e) {
+		}  catch (SQLException e) {
+			AppDataException ade = new AppDataException(e, "Error al registrar el usuario.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
+			throw ade;
+		} catch (Exception e) {
 			throw e;
 		}
 		try {
@@ -98,10 +103,10 @@ public class DataUsuario {
 			}
 		
 		}catch (SQLException e) {
-			
-			throw e;
-		} catch (AppDataException ade){
+			AppDataException ade = new AppDataException(e, "Error al validar el usuario.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
 			throw ade;
+		} catch (Exception e){
+			throw e;
 		}
 		
 		try {
@@ -115,11 +120,5 @@ public class DataUsuario {
 		
 		return validacion;		
 	}
-	
-	
-	
-	
-	
-
 	
 }
