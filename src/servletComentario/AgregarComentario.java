@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controlador.CtrlAMBCLibro;
 import controlador.CtrlComentario;
 import entidades.*;
 
@@ -44,31 +45,26 @@ public class AgregarComentario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CtrlComentario ctrl = new CtrlComentario();
 		Comentario comentario = new Comentario();
-		PrintWriter pwriter=response.getWriter();	
-		int idLibro = Integer.parseInt(request.getParameter("aIdLibro"));
+		PrintWriter pwriter=response.getWriter();			
 		Usuario user = (Usuario) request.getSession().getAttribute("usuarioActual");
-		
-		
+		RequestDispatcher pagina = null;
 		if(user == null) {
-			getServletConfig().getServletContext().getRequestDispatcher("/Login.jsp").forward(request,response);
-			
+			getServletConfig().getServletContext().getRequestDispatcher("/Login.jsp").forward(request,response);			
 		}
 		else {
-		
+			
+		int idLibro = Integer.parseInt(request.getParameter("aIdLibro"));
 		comentario.setDescripcion(request.getParameter("aComentario"));
 		comentario.setUsuario(user);
 		Date fecha = new Date();
 		comentario.setFecha_creacion(fecha);
 		Libro libro = new Libro();
 		libro.setIdLibro(idLibro);
-		comentario.setLibro(libro);
-		RequestDispatcher pagina = null;	
 		
-		try {
+		try {	
+			comentario.setLibro(libro);
 			ctrl.addComentario(comentario);
-			request.removeAttribute("libroActual");
-			request.setAttribute("libroActual", libro);
-			pagina = request.getServletContext().getRequestDispatcher("/PaginaLibro.jsp");
+			pagina = request.getRequestDispatcher("RedirigirPagina");
 			pagina.forward(request, response);
 			
 		} catch (Exception e) {
