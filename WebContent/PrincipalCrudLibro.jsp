@@ -27,6 +27,10 @@
   <input type="submit" class=botonGris value="Modificar">
 </form> 
 
+<form action="PaginaPrincipalAdmin.jsp">
+  <input type="submit" class=botonGris value="Volver">
+</form> 
+
 
 </div>
 

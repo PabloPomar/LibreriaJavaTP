@@ -47,13 +47,15 @@ public class ConsultarLibro extends HttpServlet {
 		int valorInt = Integer.parseInt(valor);
 		try {
 			libros= ctrl.getAll();
-			System.out.println(valor);
+			
+			
 			
 			if (valorInt==2) {
 				ctrl.sortByTitulo(libros);	
 			} else if (valorInt==3) {
 				ctrl.sortByNombreAutor(libros);
 			}
+			
 			
 			request.setAttribute("lista", libros);
 			getServletConfig().getServletContext().getRequestDispatcher("/ConsultarLibrosLista.jsp").forward(request,response);

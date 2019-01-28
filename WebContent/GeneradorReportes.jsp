@@ -108,7 +108,9 @@ y2++;
 </div>
 </div>
 
-
+<form action="PaginaPrincipalAdmin.jsp">
+  <input type="submit" class=botonGrisFinal value="Volver">
+</form> 
 
 
 
