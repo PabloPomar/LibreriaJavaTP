@@ -52,7 +52,7 @@ input[type=text], select {
 
 </div>
 
-<form action="PaginaPrincipal.jsp">
+<form action="PaginaPrincipal" method="get">
 <input type="submit" class="botonGrisFinal" value="volver" >  
 </form>
 
