@@ -27,7 +27,6 @@ public class RemoverItem extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int itemIndex = Integer.parseInt(request.getParameter("aItemIndex"));
-		System.out.println(itemIndex);
 		Carrito carrito = (Carrito) request.getSession().getAttribute("carritoActual");
 		
 		if (carrito == null) {

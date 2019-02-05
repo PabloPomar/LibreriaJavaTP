@@ -217,9 +217,9 @@ input[type=text], select {
     ArrayList<LineaVenta> items = carrito.getItems();
 		
     if (items.size() == 0)
-    {
-        out.println("<h3>Tu Carrito esta vacio.</h3>");
-    }
+    { %>
+       <h3>Tu Carrito esta vacio.</h3>
+    <%  }
     else
     {
     
@@ -232,29 +232,36 @@ input[type=text], select {
 	 <%  for (int i=0; i < numItems; i++)
         {  
 		 LineaVenta linea = (LineaVenta) items.get(i);
-		 
-         out.print("<tr><td>");
-         out.print(linea.getLibro().getTitulo());
-         out.print("</td><td>");
-         out.print(linea.getCantidad());
-         out.print("</td><td>");
-         out.print(linea.getLibro().getPrecio());
-         out.print("</td><td>");
-         subtotal = linea.getLibro().getPrecio() * linea.getCantidad();
-         out.print(subtotal);
-         out.print("</td><td>");
-         total = total + subtotal;
-         out.print(total);
-         out.println("</td><td>"+
-                 "<a href=\"RemoverItem?aItemIndex="+
-                 i+"\">Remove</a></td></tr>");
-        
-        
-        
-        }
+		%> 
+         <tr><td>
+         <%=linea.getLibro().getTitulo()%>
+         </td><td>
+         <%=linea.getCantidad() %>
+         </td><td>
+         <%=linea.getLibro().getPrecio() %>
+         </td><td>
+         <%
+         subtotal = linea.getLibro().getPrecio() * linea.getCantidad();  %>
+         <%=subtotal%>
+         </td><td>
+         <% 
+         total = total + subtotal; %>
+         <%=total%>
+         
+         </td><td>
+          <a href= RemoverItem?aItemIndex=<%=i %>
+                 >Remove</a></td></tr>
+         
+         
+         
+         
+       <%  }
 	
 	 %>
-	
+
+		
+
+
 	</table>
 	
 		</div>
