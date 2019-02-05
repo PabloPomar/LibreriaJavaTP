@@ -96,22 +96,22 @@ text-transform: none;
 	<tr><th>Titulo</th><th>Cantidad</th><th>Precio</th><th>Subtotal</th><th>Total</th></tr>
 	 <%  for (int i=0; i < numItems; i++)
         {  
-		 LineaVenta linea = (LineaVenta) items.get(i);
+		 LineaVenta linea = (LineaVenta) items.get(i); %>
 		 
-         out.print("<tr><td>");
-         out.print(linea.getLibro().getTitulo());
-         out.print("</td><td>");
-         out.print(linea.getCantidad());
-         out.print("</td><td>");
-         out.print(linea.getLibro().getPrecio());
-         out.print("</td><td>");
-         subtotal = linea.getLibro().getPrecio() * linea.getCantidad();
-         out.print(subtotal);
-         out.print("</td><td>");
-         total = total + subtotal;
-         out.print(total);
+         <tr><td>
+         <%=linea.getLibro().getTitulo()%>
+         </td><td>
+         <%=linea.getCantidad()%>
+         </td><td>
+         <%=linea.getLibro().getPrecio()%>
+         </td><td>
+         <% subtotal = linea.getLibro().getPrecio() * linea.getCantidad();%>
+         <%=subtotal%>
+         </td><td>
+         <%total = total + subtotal;%>
+         <%=total%>
    
-        }
+     <%   }
 	
 	 %>
 	</table>
