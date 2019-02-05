@@ -10,7 +10,7 @@
 <body>
 <div class=wrapperCenter2>
 <div class="form-style-2">
-<div class="form-style-2-heading">Ingrese datos del nuevo libro</div>
+<div class="form-style-2-heading">Ingrese datos del libro a borrar</div>
 
 <form action="BorrarLibro" method="post"  onsubmit="¿return confirm('¿Esta seguro de que quiere borrar el Libro?');">
 
