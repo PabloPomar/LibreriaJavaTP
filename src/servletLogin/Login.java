@@ -41,7 +41,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
+
 		CtrlAMBCUsuario ctrl = new CtrlAMBCUsuario();
 		Usuario u = new Usuario();
 		PrintWriter pwriter=response.getWriter();	
@@ -76,11 +76,8 @@ public class Login extends HttpServlet {
 			e1.printStackTrace();
 		}
 		
-		pagina.forward(request, response);
-		
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		pagina.forward(request, response);	
+
 		
 	}
 

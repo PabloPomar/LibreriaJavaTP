@@ -20,7 +20,7 @@ public class DataUsuario {
 		ResultSet rs=null;
 		try {
 			stmt=FactoryConexion.getInstancia().getConn().prepareStatement(
-					"select idUsuario, tipo, usuario, contraseña, nombreYApellido, dni, direccion, telefono, mail from Usuario where usuario= ? and contraseña= ?");
+					"select * from usuario where usuario=? and contraseña=?");
 			stmt.setString(1, usuario.getUsuario());
 			stmt.setString(2, usuario.getContraseña());
 			rs=stmt.executeQuery();
@@ -36,10 +36,8 @@ public class DataUsuario {
 				    u.setTelefono(rs.getInt("telefono"));
 				    u.setMail(rs.getString("mail"));
 			}			
-		} catch (SQLException e) {
-			AppDataException ade = new AppDataException(e, "Error al obtener el usuario.\n"+e.getSQLState()+":"+e.getMessage(), Level.WARN);
-			throw ade;
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			throw e;
 		} finally {
 			try {
@@ -58,7 +56,7 @@ public class DataUsuario {
 		PreparedStatement stmt=null;
 		ResultSet keyResultSet=null;	
 		try {
-			stmt=FactoryConexion.getInstancia().getConn().prepareStatement("INSERT INTO usuario (tipo, usuario, contraseña, nombreYApellido, dni, direccion, telefono, mail) VALUES ('cliente', ?, ?, ?, ?, ?, ?, ?)",PreparedStatement.RETURN_GENERATED_KEYS);
+			stmt=FactoryConexion.getInstancia().getConn().prepareStatement("INSERT INTO usuario (tipo, usuario, contraseña, nombreYApellido, dni, direccion, telefono, mail) VALUES ('usuario', ?, ?, ?, ?, ?, ?, ?)",PreparedStatement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, u.getUsuario());
 			stmt.setString(2, u.getContraseña());
 			stmt.setString(3, u.getNombreYapellido());

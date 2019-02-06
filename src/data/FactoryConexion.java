@@ -9,7 +9,7 @@ import util.AppDataException;
 
 public class FactoryConexion {
 	
-	private String host="localhost";
+	private String host="jdbc:mysql://node26522-javatplibreria.jelastic.saveincloud.net/autores";
 	
 	private String port="3306";
 	
@@ -17,7 +17,7 @@ public class FactoryConexion {
 	private final String userName = "root";
 
 	/** The password for the MySQL account (or empty for anonymous) */
-	private final String password = "admin";
+	private final String password = "FZOaip26813";
 
 	/** The name of the database we are testing with (this default is installed with MySQL) */
 	private final String dbName = "autores";
@@ -57,7 +57,7 @@ public class FactoryConexion {
 				connectionProps.put("useLegacyDatetimeCode", false);
 				connectionProps.put("serverTimezone", "UTC");
 				conn = DriverManager.getConnection(
-			        "jdbc:mysql://"+host+":"+port+"/"+dbName,connectionProps);			
+			        host,connectionProps);			
 			}
 		} catch (SQLException e) {
 			throw new AppDataException(e, "Error al conectar a la base de datos", Level.ERROR);

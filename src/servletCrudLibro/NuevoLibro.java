@@ -84,10 +84,8 @@ public class NuevoLibro extends HttpServlet {
 			ctrl.add(libro);
 			pwriter.println("Libro Agregado");
 			request.setAttribute("nuevoLibro", libro);
-			ServletContext context= getServletContext();
-			RequestDispatcher rd= context.getRequestDispatcher("/EnviarMail");
-			rd.forward(request, response);
-			
+			request.getServletContext().getRequestDispatcher("/EnviarMail").forward(request, response);
+
 			
 			/*
 			pwriter.write("<form action=\"NuevoLibro.jsp\">\r\n" + 
