@@ -57,7 +57,7 @@ public class EnviarMail extends HttpServlet {
 			} 
 			else {
 				for (Mail m : mails ) {
-					Emailer.getInstance().send(m.getMail(), tema, mensaje);
+					Emailer.getInstance().send(m.getMail(), tema, mensaje); /*Esto no funciono en el server por que la version de jdk me desactivo el api de Javax */
 					pwriter.println("Libro Agregado. Mensajes enviados");
 				}
 			}
